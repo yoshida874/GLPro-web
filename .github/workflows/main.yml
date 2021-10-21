@@ -3,16 +3,14 @@ on:
     branches:
       - develop
 
-name: test frontend sample app
+name: format and lint
 jobs:
   lint:
     name: Lint check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
       - run: npm install
-      - name: Prettier
-        run: npm run format
-      - name: Eslint
+      - run: npm run format
       - run: npm run lint
