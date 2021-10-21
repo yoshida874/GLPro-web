@@ -1,0 +1,16 @@
+{
+  "env": {
+    "es6": true
+  },
+  "extends": ["next", "next/core-web-vitals", "prettier"],
+  "rules": {
+    "semi": ["error", "always"],
+    "no-unused-vars": "error",
+
+    "arrow-spacing": "warn",
+    "arrow-parens": "warn",
+    "prefer-arrow-callback": "warn",
+    "no-const-assign": "error",
+    "spaced-comment": "warn"
+  }
+}
