@@ -14,3 +14,5 @@ jobs:
       - run: npm install
       - name: Prettier
         run: npm run format
+      - name: Eslint
+      - run: npm run lint
