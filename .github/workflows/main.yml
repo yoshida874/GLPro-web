@@ -1,0 +1,16 @@
+on:
+  push:
+    branches:
+      - develop
+
+name: test frontend sample app
+jobs:
+  lint:
+    name: Lint check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+      - run: npm install
+      - name: Prettier
+        run: npm run format
