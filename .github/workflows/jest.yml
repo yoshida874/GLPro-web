@@ -1,14 +1,16 @@
-name: jest
+name: Jest
 
-on: [push]
+on: push
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
+      - name: Use Node.js v14.17.5
+        uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: '14.17.5'
       - run: npm install
       - run: npm run test
