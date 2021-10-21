@@ -3,7 +3,7 @@ on:
     branches:
       - develop
 
-name: format and lint
+name: format
 jobs:
   lint:
     name: Lint check
@@ -13,4 +13,3 @@ jobs:
       - uses: actions/setup-node@v2
       - run: npm install
       - run: npm run format
-      - run: npm run lint
