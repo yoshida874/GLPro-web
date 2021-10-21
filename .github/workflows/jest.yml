@@ -11,4 +11,6 @@ jobs:
         with:
           node-version: 14.x
       - run: npm install
+      - run: npm run format
+      - run: npm run lint
       - run: npm run test
