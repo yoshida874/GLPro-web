@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { Flex, Heading, Spacer, Stack,Box,Text} from '@chakra-ui/react';
+import { Flex, Heading, Spacer, Stack,Box,Menu, MenuButton,MenuItem,MenuList} from '@chakra-ui/react';
 // import { HamburgerIcon } from '@chakra-ui/icons';
 
 const Header: VFC = () => {
@@ -11,16 +11,22 @@ const Header: VFC = () => {
       </Box>
       <Spacer />
       <Box py={4}>
-        <Stack
-          direction={{ base: "column", md: "row" }} 
-        >
-          <Box><Text _hover={{ color: "red"}}>地区一覧</Text></Box>
+        <Stack　direction={{ base: "column", md: "row" }} >
+          <Box>
+            <Menu isLazy>
+              <MenuButton>地区一覧</MenuButton>
+                <MenuList>
+                  {/* MenuItems are not rendered unless Menu is open */}
+                  <MenuItem>New Window</MenuItem>
+                  <MenuItem>Open Closed Tab</MenuItem>
+                  <MenuItem>Open File</MenuItem>
+                </MenuList>
+            </Menu>
+          </Box>
           <Box>質問一覧</Box>
           <Box>ログイン</Box>
         </Stack>
       </Box>
-
-      
     </Flex>
     
   );
