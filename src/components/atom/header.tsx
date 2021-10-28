@@ -1,16 +1,28 @@
 import { VFC } from 'react';
-import { Flex, Button, Heading, Spacer } from '@chakra-ui/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
+import { Flex, Heading, Spacer, Stack,Box,Text} from '@chakra-ui/react';
+// import { HamburgerIcon } from '@chakra-ui/icons';
 
 const Header: VFC = () => {
   return (
+  
     <Flex bg="#48BB78" px={4} py={2} h="64px" w="100%">
-      <Heading>GL pro</Heading>
+      <Box>
+        <Heading>GL pro</Heading>
+      </Box>
       <Spacer />
-      <Button color="black" bg="transparent" _hover={{ bg: '#50E090' }}>
-        <HamburgerIcon h="36px" w="32px" />
-      </Button>
+      <Box py={4}>
+        <Stack
+          direction={{ base: "column", md: "row" }} 
+        >
+          <Box><Text _hover={{ color: "red"}}>地区一覧</Text></Box>
+          <Box>質問一覧</Box>
+          <Box>ログイン</Box>
+        </Stack>
+      </Box>
+
+      
     </Flex>
+    
   );
 };
 
