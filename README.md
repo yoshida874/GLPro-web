@@ -21,7 +21,7 @@ jest `npm run test`<br>
 ## 開発環境立ち上げまで
 
 `npm install` を実行後
-`npm run dev` を実行し http://localhost:8080 を起動する
+`npm run dev` を実行し http://localhost:3000 を起動する
 
 ## 開発ルール
 
