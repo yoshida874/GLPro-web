@@ -51,9 +51,34 @@ const Header: VFC = () => {
         <Flex ml={50}>
           <ul style={styles.ul}>
             <li style={styles.li}>
-              <a href="" style={styles.link}>
-                <span style={styles.span}>Questions</span>質問一覧
-              </a>
+              <Menu>
+                <div style={styles.link}>
+                  <span style={styles.span}>Questions</span>
+                  <MenuButton fontWeight="700">質問一覧</MenuButton>
+                </div>
+                <MenuList border="0" mt="1" bg="rgba(198, 246, 213, 0.5)">
+                  <Table variant="unstyled" size="md">
+                    <Tbody>
+                      <Tr>
+                        <Td>
+                          <Link>渋谷区</Link>
+                        </Td>
+                        <Td>
+                          <Link>台東区</Link>
+                        </Td>
+                      </Tr>
+                      <Tr>
+                        <Td>
+                          <Link>渋谷区</Link>
+                        </Td>
+                        <Td>
+                          <Link>台東区</Link>
+                        </Td>
+                      </Tr>
+                    </Tbody>
+                  </Table>
+                </MenuList>
+              </Menu>
             </li>
             <li style={styles.li}>
               <a href="" style={styles.link}>
@@ -73,52 +98,6 @@ const Header: VFC = () => {
           </ul>
         </Flex>
       </Flex>
-      {/* 
-      <Flex bg="#48BB78" px={4} py={2} h="64px" w="100%" spacing={3}>
-        <Flex>
-          <Heading color="#FFFFFF" size="2xl">
-            GLpro
-          </Heading>
-        </Flex>
-
-        <Stack direction={{ base: 'column', md: 'row' }} spacing={3} ml={10} mt={3}>
-          <Menu isLazy>
-            <MenuButton>地区一覧</MenuButton>
-            <MenuList border="0" mt="2" bg="rgba(198, 246, 213, 0.5)">
-              <Table variant="unstyled" size="md">
-                <Tbody>
-                  <Tr>
-                    <Td>
-                      <Link>渋谷区</Link>
-                    </Td>
-                    <Td>
-                      <Link>台東区</Link>
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>
-                      <Link>渋谷区</Link>
-                    </Td>
-                    <Td>
-                      <Link>台東区</Link>
-                    </Td>
-                  </Tr>
-                </Tbody>
-              </Table>
-            </MenuList>
-          </Menu>
-          <Menu>
-            <MenuButton> 質問一覧</MenuButton>
-          </Menu>
-        </Stack>
-        <Spacer />
-        <Flex mt={3}>
-          <Menu>
-            <MenuButton>ログイン</MenuButton>
-          </Menu>
-        </Flex>
-      </Flex>
-    */}
     </>
   );
 };
