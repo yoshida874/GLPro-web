@@ -9,8 +9,21 @@ import {
   MenuButton,
   MenuList,
   Link,
+  HStack,
+  MenuItem,
 } from '@chakra-ui/react';
-import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, Text } from '@chakra-ui/react';
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  Text,
+  Image,
+} from '@chakra-ui/react';
 // import { HamburgerIcon } from '@chakra-ui/icons';
 
 const Header: VFC = () => {
@@ -41,54 +54,69 @@ const Header: VFC = () => {
 
   return (
     <>
-      <Flex Flex bg="#48BB78" px={4} py={2} h="64px" w="100%" spacing={3}>
+      <Flex Flex bg="#48BB78" px={4} h="74px" w="100%" spacing={3}>
         <Flex>
-          <Heading color="" size="2xl">
-            GLpro
-          </Heading>
+          <Image src="/logo.png" alt="ロゴ画像です" />
         </Flex>
-
-        <Flex ml={50}>
+        <Flex ml={50} py={3}>
           <ul style={styles.ul}>
             <li style={styles.li}>
               <Menu>
                 <div style={styles.link}>
-                  <span style={styles.span}>Questions</span>
-                  <MenuButton fontWeight="700">質問一覧</MenuButton>
+                  <span style={styles.span}>district</span>
+                  <MenuButton fontWeight="700">地区一覧</MenuButton>
                 </div>
-                <MenuList border="0" mt="1" bg="rgba(198, 246, 213, 0.5)">
-                  <Table variant="unstyled" size="md">
-                    <Tbody>
-                      <Tr>
-                        <Td>
-                          <Link>渋谷区</Link>
-                        </Td>
-                        <Td>
-                          <Link>台東区</Link>
-                        </Td>
-                      </Tr>
-                      <Tr>
-                        <Td>
-                          <Link>渋谷区</Link>
-                        </Td>
-                        <Td>
-                          <Link>台東区</Link>
-                        </Td>
-                      </Tr>
-                    </Tbody>
-                  </Table>
+                <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 0.5)" w="xs">
+                  <HStack spacing="24px" mt="1">
+                    <Box flexBasis="350">
+                      <Link>新宿区</Link>
+                    </Box>
+                    <Box flexBasis="350">
+                      <Link>中央区</Link>
+                    </Box>
+                    <Box flexBasis="350">
+                      <Link>港区</Link>
+                    </Box>
+                  </HStack>
+
+                  <Spacer />
+                  <HStack spacing="24px" mt="1">
+                    <Box flexBasis="350">
+                      <Link>台東区</Link>
+                    </Box>
+                    <Box flexBasis="350">
+                      <Link>文京区</Link>
+                    </Box>
+                    <Box flexBasis="350">
+                      <Link>千代田区</Link>
+                    </Box>
+                  </HStack>
+
+                  <Box>
+                    <HStack spacing="24px" mt="1">
+                      <Box flexBasis="350">
+                        <Link>新宿区</Link>
+                      </Box>
+                      <Box flexBasis="350">
+                        <Link>中央区</Link>
+                      </Box>
+                      <Box flexBasis="350">
+                        <Link>港区</Link>
+                      </Box>
+                    </HStack>
+                  </Box>
                 </MenuList>
               </Menu>
             </li>
             <li style={styles.li}>
               <a href="" style={styles.link}>
-                <span style={styles.span}>district</span>地区一覧
+                <span style={styles.span}>Questions</span>質問一覧
               </a>
             </li>
           </ul>
         </Flex>
         <Spacer />
-        <Flex>
+        <Flex py={3}>
           <ul>
             <li style={styles.login}>
               <a href="" style={styles.link}>
