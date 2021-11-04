@@ -1,5 +1,5 @@
 import React, { VFC } from 'react';
-import { Box, Link, HStack, MenuGroup, MenuDivider } from '@chakra-ui/react';
+import { Box, Link, HStack, MenuGroup } from '@chakra-ui/react';
 
 const headerArealist: VFC = () => {
   return (
@@ -28,8 +28,6 @@ const headerArealist: VFC = () => {
           </Box>
         </HStack>
       </MenuGroup>
-
-      <MenuDivider />
     </>
   );
 };
