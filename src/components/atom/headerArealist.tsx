@@ -1,76 +1,32 @@
-import React, { VFC } from 'react';
-import { Box, Link, HStack, MenuGroup } from '@chakra-ui/react';
+import React from 'react';
+import { Box, Link, Flex, MenuGroup } from '@chakra-ui/react';
 
-const headerArealist: VFC = () => {
+type Props = {
+  area: { id: number; tiku: { id: number; name: string }[] };
+};
+
+const headerArealist: React.VFC<Props> = (props) => {
+  let title = '';
+
+  if (props.area.id == 1) {
+    title = '都心・副都心エリア';
+  } else if (props.area.id == 2) {
+    title = '城東エリア';
+  }
+
   return (
     <>
-      <MenuGroup title="都心・副都心エリア">
-        <HStack spacing="24px" width="100%" ml="4">
-          <Box width="40%">
-            <Link>千代田区</Link>
-          </Box>
-          <Box width="40%">
-            <Link>中央区</Link>
-          </Box>
-          <Box width="40%">
-            <Link>港区</Link>
-          </Box>
-        </HStack>
-        <HStack spacing="24px" width="100%" ml="4">
-          <Box width="40%">
-            <Link>新宿区</Link>
-          </Box>
-          <Box width="40%">
-            <Link>文京区</Link>
-          </Box>
-          <Box width="40%">
-            <Link>豊島区</Link>
-          </Box>
-        </HStack>
+      <MenuGroup title={title}>
+        <Flex flexWrap="wrap" gridGap="6px">
+          {props.area.tiku.map((element, index) => (
+            <Box key={index} w="29%">
+              <Link>{element.name}</Link>
+            </Box>
+          ))}
+        </Flex>
       </MenuGroup>
     </>
   );
 };
 
-{
-  /*
-<MenuGroup title="城南エリア">
-                    <HStack spacing="24px" width="100%" ml="4">
-                      <Box width="40%">
-                        <Link>品川区</Link>
-                      </Box>
-                      <Box width="40%">
-                        <Link>大田区</Link>
-                      </Box>
-                      <Box width="40%">
-                        <Link>港区</Link>
-                      </Box>
-                    </HStack>
-                    <HStack spacing="24px" width="100%" ml="4">
-                      <Box width="40%">
-                        <Link>目黒区</Link>
-                      </Box>
-                    </HStack>
-                  </MenuGroup>
-
-                  
-                <MenuGroup title="城西エリア">
-                    <HStack spacing="24px" width="100%" ml="4">
-                      <Box width="40%">
-                        <Link>世田谷区</Link>
-                      </Box>
-                      <Box width="40%">
-                        <Link>中野区</Link>
-                      </Box>
-                      <Box width="40%">
-                        <Link>杉並区</Link>
-                      </Box>
-                    </HStack>
-                    <HStack spacing="24px" ml="4">
-                      <Box width="40%">
-                        <Link>練馬区</Link>
-                      </Box>
-                    </HStack>
-                  </MenuGroup> */
-}
 export default headerArealist;

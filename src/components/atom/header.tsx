@@ -32,6 +32,66 @@ const Header: VFC = () => {
     },
   };
 
+  {
+    /* 23区
+    { id: 3, name: ['城南エリア', '品川区', '目黒区'] },
+    { id: 4, name: ['城西エリア', '世田谷区', '杉並区', '練馬区'] },
+    { id: 5, name: ['城北エリア', '北区', '板橋区'] },
+  */
+  }
+  const area = [
+    {
+      id: 1,
+      tiku: [
+        {
+          id: 1,
+          name: '千代田区',
+        },
+        {
+          id: 2,
+          name: '大田区',
+        },
+        {
+          id: 3,
+          name: '港区',
+        },
+        {
+          id: 4,
+          name: '目黒区',
+        },
+      ],
+    },
+    {
+      id: 2,
+      tiku: [
+        {
+          id: 1,
+          name: '台東区',
+        },
+        {
+          id: 2,
+          name: '墨田区',
+        },
+        {
+          id: 3,
+          name: '荒川区',
+        },
+        {
+          id: 4,
+          name: '葛飾区',
+        },
+        {
+          id: 5,
+          name: '江東区',
+        },
+        {
+          id: 6,
+          name: '江戸川区',
+        },
+      ],
+    },
+  ];
+
   return (
     <>
       <Flex bg="#48BB78" px={4} h="74px" w="100%" spacing={3}>
@@ -47,22 +107,37 @@ const Header: VFC = () => {
             <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 0.5)" w="xl">
               <Flex>
                 <Box flex="1">
-                  <HeaderArealist />
+                  <HeaderArealist area={area[0]} />
                 </Box>
+
                 <Box flex="1">
-                  <HeaderArealist />
+                  <HeaderArealist area={area[1]} />
                 </Box>
               </Flex>
-
               <MenuDivider />
-
               <Flex>
                 <Box flex="1">
-                  <HeaderArealist />
+                  <HeaderArealist area={area[0]} />
                 </Box>
                 <Box flex="1">
-                  <HeaderArealist />
+                  <HeaderArealist area={area[1]} />
                 </Box>
+              </Flex>
+              <MenuDivider />
+              <Flex>
+                <Box flex="1">
+                  <HeaderArealist area={area[0]} />
+                </Box>
+                <Box flex="1">
+                  <HeaderArealist area={area[1]} />
+                </Box>
+              </Flex>
+              <MenuDivider />
+              <Flex>
+                <Box flex="1">
+                  <HeaderArealist area={area[0]} />
+                </Box>
+                <Box flex="1"></Box>
               </Flex>
             </MenuList>
           </Menu>
