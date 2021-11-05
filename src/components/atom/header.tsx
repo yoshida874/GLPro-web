@@ -22,16 +22,6 @@ const Header: VFC = () => {
       color: '#053e62',
       fontSize: '13px',
     },
-    link: {
-      display: 'flex',
-      flexDirection: 'column',
-      fontWeight: 700,
-      textAlign: 'center',
-    },
-    login: {
-      marginRight: '10px',
-      listStyle: 'none',
-    },
   };
 
   return (
@@ -42,10 +32,10 @@ const Header: VFC = () => {
         </Flex>
         <Flex ml={50} py={3}>
           <Menu>
-            <Box style={styles.link}>
+            <Flex textAlign="center" direction="column" fontWeight="700">
               <span style={styles.span}>district</span>
               <MenuButton fontWeight="700">地区一覧</MenuButton>
-            </Box>
+            </Flex>
             <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 0.5)" w="xl">
               <Flex>
                 <Box flex="1">
@@ -84,13 +74,13 @@ const Header: VFC = () => {
             </MenuList>
           </Menu>
 
-          <Box style={styles.link} ml="5">
+          <Flex textAlign="center" ml="5" direction="column" fontWeight="700">
             <span style={styles.span}>district</span>
             <Link fontWeight="700">質問一覧</Link>
-          </Box>
+          </Flex>
         </Flex>
         <Spacer />
-        <Flex py={3} style={styles.link} ml="5">
+        <Flex py={3} textAlign="center" ml="5" direction="column" fontWeight="700">
           <span style={styles.span}>login</span>
           <Link fontWeight="700">ログイン</Link>
         </Flex>
