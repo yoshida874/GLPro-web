@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 
 import { Box, Image, Flex, Text, Divider, Select, Button, Spacer } from '@chakra-ui/react';
 
-import Header from 'src/components/atom/header';
+import Header from 'src/components/atom/header/Header';
 import Footer from 'src/components/atom/Footer';
 import ReviewBox from 'src/components/areaDetail/ReviewBox';
 import CategoryRate from 'src/components/areaDetail/CategoryRate';

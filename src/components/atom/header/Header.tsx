@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 // import { HamburgerIcon } from '@chakra-ui/icons';
-import HeaderAreaList from './headerArealist';
+import HeaderAreaList from './HeaderAreaList';
 import { AREA } from '../../../common/area';
 const area = AREA;
 
