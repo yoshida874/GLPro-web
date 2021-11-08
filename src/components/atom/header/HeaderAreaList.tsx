@@ -5,18 +5,18 @@ type Props = {
   area: { id: number; tiku: { id: number; name: string }[] };
 };
 
-const headerArealist: VFC<Props> = ({ area }) => {
+const HeaderAreaList: VFC<Props> = ({ area }) => {
   let title = '';
 
-  if (area.id == 1) {
+  if (area.id === 1) {
     title = '都心・副都心エリア';
-  } else if (area.id == 2) {
+  } else if (area.id === 2) {
     title = '城東エリア';
-  } else if (area.id == 3) {
+  } else if (area.id === 3) {
     title = '城南エリア';
-  } else if (area.id == 2) {
+  } else if (area.id === 2) {
     title = '城西エリア';
-  } else if (area.id == 2) {
+  } else if (area.id === 2) {
     title = '城北エリア';
   }
 
@@ -35,4 +35,4 @@ const headerArealist: VFC<Props> = ({ area }) => {
   );
 };
 
-export default headerArealist;
+export default HeaderAreaList;

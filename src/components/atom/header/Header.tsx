@@ -12,8 +12,8 @@ import {
 } from '@chakra-ui/react';
 
 // import { HamburgerIcon } from '@chakra-ui/icons';
-import HeaderArealist from './headerArealist';
-import { AREA } from '../../common/area';
+import HeaderAreaList from './headerArealist';
+import { AREA } from '../../../common/area';
 const area = AREA;
 
 const Header: VFC = () => {
@@ -39,35 +39,35 @@ const Header: VFC = () => {
             <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 0.5)" w="xl">
               <Flex>
                 <Box flex="1">
-                  <HeaderArealist area={area[0]} />
+                  <HeaderAreaList area={area[0]} />
                 </Box>
 
                 <Box flex="1">
-                  <HeaderArealist area={area[1]} />
+                  <HeaderAreaList area={area[1]} />
                 </Box>
               </Flex>
               <MenuDivider />
               <Flex>
                 <Box flex="1">
-                  <HeaderArealist area={area[2]} />
+                  <HeaderAreaList area={area[2]} />
                 </Box>
                 <Box flex="1">
-                  <HeaderArealist area={area[1]} />
-                </Box>
-              </Flex>
-              <MenuDivider />
-              <Flex>
-                <Box flex="1">
-                  <HeaderArealist area={area[1]} />
-                </Box>
-                <Box flex="1">
-                  <HeaderArealist area={area[0]} />
+                  <HeaderAreaList area={area[1]} />
                 </Box>
               </Flex>
               <MenuDivider />
               <Flex>
                 <Box flex="1">
-                  <HeaderArealist area={area[0]} />
+                  <HeaderAreaList area={area[1]} />
+                </Box>
+                <Box flex="1">
+                  <HeaderAreaList area={area[0]} />
+                </Box>
+              </Flex>
+              <MenuDivider />
+              <Flex>
+                <Box flex="1">
+                  <HeaderAreaList area={area[0]} />
                 </Box>
                 <Box flex="1"></Box>
               </Flex>
