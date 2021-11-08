@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 // import Image from 'next/image';
 import { Box, Image, Flex } from '@chakra-ui/react';
-import Header from '../components/atom/header';
+import Header from '../components/atom/header/Header';
 import Footer from '../components/atom/Footer';
 
 const Home: NextPage = () => {
