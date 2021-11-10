@@ -20,12 +20,11 @@ const ReviewPost: NextPage = () => {
     <>
       <Header />
       <Box mr="40" ml="40" mt="8" mb="8">
-        <Flex height="100px" flexWrap="wrap" alignItems="left">
+        <Flex height="80px" flexWrap="wrap" alignItems="left">
           <Box textAlign="center" ml="4">
             <Text fontSize="52px" fontWeight="bold">
               渋谷区
             </Text>
-            <Text fontSize="24px">Sibuya City</Text>
           </Box>
         </Flex>
         <Box>
@@ -36,7 +35,7 @@ const ReviewPost: NextPage = () => {
           ))}
         </Box>
         <Flex w="90%" ml="auto" mr="auto" mt="10" justifyContent="flex-end">
-          <Button bg="#48BB78" color="#ffffff" variant="solid" size="md">
+          <Button bg="#48BB78" color="#ffffff" colorScheme="green" size="md" width="10%">
             投 稿
           </Button>
         </Flex>
