@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text, Button } from '@chakra-ui/react';
 
 import Header from 'src/components/atom/header/Header';
 import Footer from 'src/components/atom/Footer';
@@ -35,7 +35,13 @@ const ReviewPost: NextPage = () => {
             </Box>
           ))}
         </Box>
+        <Flex w="90%" ml="auto" mr="auto" mt="10" justifyContent="flex-end">
+          <Button bg="#48BB78" color="#ffffff" variant="solid" size="md">
+            投 稿
+          </Button>
+        </Flex>
       </Box>
+
       <Footer />
     </>
   );
