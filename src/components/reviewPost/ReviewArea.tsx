@@ -3,15 +3,15 @@ import { Box, Flex, Text, Textarea } from '@chakra-ui/react';
 
 import { Rating } from 'react-simple-star-rating';
 
-type Props = {
+interface Props {
   name: string;
-};
+}
 
 const ReviewArea: VFC<Props> = (category) => {
   const [rating, setRating] = useState(1);
 
   // Catch Rating value
-  const handleRating = (rate) => {
+  const handleRating = (rate: number): void => {
     setRating(rate);
     // Some logic
   };
