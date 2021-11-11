@@ -4,7 +4,7 @@ import StarRatings from 'react-star-ratings';
 import { FaMapMarker, FaTag } from 'react-icons/fa';
 import { BsStopwatch } from 'react-icons/bs';
 
-const ReviewBox: VFC = () => {
+const ReviewBox: VFC<any> = ({ createDate, areaName, category, content }) => {
   return (
     <Box bg="white" borderBottom="medium solid #FAFAFA" w="100%">
       <HStack flexWrap="wrap">
@@ -18,18 +18,18 @@ const ReviewBox: VFC = () => {
         <Spacer />
         <Flex flexWrap="wrap" pr="4" alignItems="center">
           <BsStopwatch />
-          2021/11/11
+          {createDate}
         </Flex>
         <Flex flexWrap="wrap" pr="4" alignItems="center">
           <FaMapMarker color="red" />
-          渋谷区
+          {areaName}
         </Flex>
         <Flex flexWrap="wrap" pr="12" alignItems="center">
           <FaTag color="blue" />
           治安
         </Flex>
       </HStack>
-      <Box mt="4">とてもわるい</Box>
+      <Box mt="4">{content}</Box>
     </Box>
   );
 };
