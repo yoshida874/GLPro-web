@@ -1,9 +1,5 @@
 import { NextPage } from 'next';
-
 import { Box, Flex, Text, Button } from '@chakra-ui/react';
-
-import Header from 'src/components/atom/header/Header';
-import Footer from 'src/components/atom/Footer';
 import ReviewArea from 'src/components/reviewPost/ReviewArea';
 
 const ReviewPost: NextPage = () => {
@@ -18,7 +14,6 @@ const ReviewPost: NextPage = () => {
 
   return (
     <>
-      <Header />
       <Box mr="40" ml="40" mt="8" mb="8">
         <Flex height="80px" flexWrap="wrap" alignItems="left">
           <Box textAlign="center" ml="4">
@@ -40,8 +35,6 @@ const ReviewPost: NextPage = () => {
           </Button>
         </Flex>
       </Box>
-
-      <Footer />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { VFC } from 'react';
+import { VFC, memo } from 'react';
 import { Flex, Text, HStack } from '@chakra-ui/react';
 
 const Footer: VFC = () => {
@@ -25,4 +25,4 @@ const Footer: VFC = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);
