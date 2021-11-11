@@ -27,11 +27,11 @@ const Header: VFC = () => {
   return (
     <>
       <Flex bg="#48BB78" px={4} h="74px" w="100%" spacing={3}>
-        <Flex>
+        <Flex id="title">
           <Image src="/logo.png" alt="ロゴ画像です" />
         </Flex>
-        <Flex ml={50} py={3}>
-          <Menu>
+        <Flex ml={50} py={3} id="test">
+          <Menu id="area-btn">
             <Flex textAlign="center" direction="column" fontWeight="700">
               <span style={styles.span}>district</span>
               <MenuButton fontWeight="700">地区一覧</MenuButton>
