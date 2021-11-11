@@ -1,9 +1,9 @@
-import { VFC } from 'react';
+import React, { VFC } from 'react';
 import { Box, Link, Flex, MenuGroup } from '@chakra-ui/react';
 
-type Props = {
+interface Props {
   area: { id: number; tiku: { id: number; name: string }[] };
-};
+}
 
 const HeaderAreaList: VFC<Props> = ({ area }) => {
   let title = '';
@@ -35,4 +35,4 @@ const HeaderAreaList: VFC<Props> = ({ area }) => {
   );
 };
 
-export default HeaderAreaList;
+export default React.memo(HeaderAreaList);
