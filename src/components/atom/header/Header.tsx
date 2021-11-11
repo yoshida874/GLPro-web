@@ -1,4 +1,4 @@
-import React, { VFC } from 'react';
+import { VFC, memo } from 'react';
 import {
   Flex,
   Spacer,
@@ -27,10 +27,10 @@ const Header: VFC = () => {
   return (
     <>
       <Flex bg="#48BB78" px={4} h="74px" w="100%" spacing={3}>
-        <Flex id="title">
+        <Flex>
           <Image src="/logo.png" alt="ロゴ画像です" />
         </Flex>
-        <Flex ml={50} py={3} id="test">
+        <Flex ml={50} py={3}>
           <Menu id="area-btn">
             <Flex textAlign="center" direction="column" fontWeight="700">
               <span style={styles.span}>district</span>
@@ -89,4 +89,4 @@ const Header: VFC = () => {
   );
 };
 
-export default React.memo(Header);
+export default memo(Header);
