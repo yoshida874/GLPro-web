@@ -1,4 +1,4 @@
-import React, { VFC } from 'react';
+import { VFC, memo } from 'react';
 import { Box, Link, Flex, MenuGroup } from '@chakra-ui/react';
 
 interface Props {
@@ -35,4 +35,4 @@ const HeaderAreaList: VFC<Props> = ({ area }) => {
   );
 };
 
-export default React.memo(HeaderAreaList);
+export default memo(HeaderAreaList);
