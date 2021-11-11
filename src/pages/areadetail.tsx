@@ -2,8 +2,6 @@ import { NextPage } from 'next';
 
 import { Box, Image, Flex, Text, Divider, Select, Button, Spacer } from '@chakra-ui/react';
 
-import Header from 'src/components/atom/header/Header';
-import Footer from 'src/components/atom/Footer';
 import ReviewBox from 'src/components/areaDetail/ReviewBox';
 import CategoryRate from 'src/components/areaDetail/CategoryRate';
 
@@ -19,7 +17,6 @@ const AreaDerail: NextPage = () => {
   const reviews = [1, 2, 3];
   return (
     <>
-      <Header />
       <Box mr="40" ml="40" mt="8" mb="8">
         <Flex height="200px" flexWrap="wrap" justifyContent="center" alignItems="center">
           <Image src="/Emblem_Shibuya.png" alt="" w="auto" height="180px" objectFit="cover" />
@@ -66,7 +63,6 @@ const AreaDerail: NextPage = () => {
           </Box>
         </Box>
       </Box>
-      <Footer />
     </>
   );
 };
