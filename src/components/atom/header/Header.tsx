@@ -37,6 +37,8 @@ const Header: VFC = () => {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
+  const splitRegion = [data.region.slice(0, 2), data.region.slice(2, 4), data.region.slice(4, 6)];
+
   return (
     <>
       <Flex bg="#48BB78" px={4} h="74px" w="100%" spacing={3}>
@@ -49,8 +51,24 @@ const Header: VFC = () => {
               <span style={styles.span}>district</span>
               <MenuButton fontWeight="700">地区一覧</MenuButton>
             </Flex>
-            <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 0.5)" w="xl">
-              <Flex>
+            <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 0.8)" w="xl">
+              {splitRegion.map((obj, index) => (
+                <div key={index}>
+                  <Flex>
+                    <Box flex="1" key={obj[0].id}>
+                      <HeaderAreaList region={obj[0]} />
+                    </Box>
+                    {obj.length === 2 && (
+                      <Box flex="1" key={obj[1].id}>
+                        <HeaderAreaList region={obj[0]} />
+                      </Box>
+                    )}
+                  </Flex>
+                  <MenuDivider />
+                </div>
+              ))}
+              {/*
+               <Flex>
                 <Box flex="1">
                   <HeaderAreaList region={data.region[0]} />
                 </Box>
@@ -74,7 +92,7 @@ const Header: VFC = () => {
                   <HeaderAreaList region={data.region[4]} />
                 </Box>
                 <Box flex="1"></Box>
-              </Flex>
+              </Flex> */}
             </MenuList>
           </Menu>
 
