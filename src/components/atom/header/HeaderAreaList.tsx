@@ -2,29 +2,21 @@ import { VFC, memo } from 'react';
 import { Box, Link, Flex, MenuGroup } from '@chakra-ui/react';
 
 interface Props {
-  area: { id: number; tiku: { id: number; name: string }[] };
+  region: {
+    name: string;
+    area: {
+      id: string;
+      name: string;
+    }[];
+  };
 }
 
-const HeaderAreaList: VFC<Props> = ({ area }) => {
-  let title = '';
-
-  if (area.id === 1) {
-    title = '都心・副都心エリア';
-  } else if (area.id === 2) {
-    title = '城東エリア';
-  } else if (area.id === 3) {
-    title = '城南エリア';
-  } else if (area.id === 2) {
-    title = '城西エリア';
-  } else if (area.id === 2) {
-    title = '城北エリア';
-  }
-
+const HeaderAreaList: VFC<Props> = ({ region }) => {
   return (
     <>
-      <MenuGroup title={title}>
+      <MenuGroup title={region.name}>
         <Flex flexWrap="wrap" gridGap="6px">
-          {area.tiku.map((element, index) => (
+          {region.area.map((element, index) => (
             <Box key={index} w="29%">
               <Link>{element.name}</Link>
             </Box>

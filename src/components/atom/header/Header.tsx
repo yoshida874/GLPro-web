@@ -11,10 +11,10 @@ import {
   Image,
 } from '@chakra-ui/react';
 
-// import { HamburgerIcon } from '@chakra-ui/icons';
+import useSWR from 'swr';
+import axios from 'axios';
+
 import HeaderAreaList from './HeaderAreaList';
-import { AREA } from '../../../common/area';
-const area = AREA;
 
 const Header: VFC = () => {
   const styles: { [key: string]: React.CSSProperties } = {
@@ -23,6 +23,19 @@ const Header: VFC = () => {
       fontSize: '13px',
     },
   };
+
+  const fetcher = async () => {
+    const res = await axios.get('https://9c0d98f3-468f-4409-ad83-7839a6c9cce9.mock.pstmn.io/area');
+    return res.data;
+  };
+
+  const { data, error } = useSWR(
+    'https://9c0d98f3-468f-4409-ad83-7839a6c9cce9.mock.pstmn.io/area',
+    fetcher
+  );
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
 
   return (
     <>
@@ -39,35 +52,26 @@ const Header: VFC = () => {
             <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 0.5)" w="xl">
               <Flex>
                 <Box flex="1">
-                  <HeaderAreaList area={area[0]} />
+                  <HeaderAreaList region={data.region[0]} />
                 </Box>
 
                 <Box flex="1">
-                  <HeaderAreaList area={area[1]} />
+                  <HeaderAreaList region={data.region[1]} />
                 </Box>
               </Flex>
               <MenuDivider />
               <Flex>
                 <Box flex="1">
-                  <HeaderAreaList area={area[2]} />
+                  <HeaderAreaList region={data.region[2]} />
                 </Box>
                 <Box flex="1">
-                  <HeaderAreaList area={area[1]} />
-                </Box>
-              </Flex>
-              <MenuDivider />
-              <Flex>
-                <Box flex="1">
-                  <HeaderAreaList area={area[1]} />
-                </Box>
-                <Box flex="1">
-                  <HeaderAreaList area={area[0]} />
+                  <HeaderAreaList region={data.region[3]} />
                 </Box>
               </Flex>
               <MenuDivider />
               <Flex>
                 <Box flex="1">
-                  <HeaderAreaList area={area[0]} />
+                  <HeaderAreaList region={data.region[4]} />
                 </Box>
                 <Box flex="1"></Box>
               </Flex>
