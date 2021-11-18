@@ -1,9 +1,7 @@
 import { VFC, memo } from 'react';
 import { Flex, Spacer, Box, Menu, MenuButton, MenuList, Link, Image } from '@chakra-ui/react';
-
 import useSWR from 'swr';
 import axios from 'axios';
-
 import HeaderAreaList from './HeaderAreaList';
 
 const Header: VFC = () => {
@@ -34,16 +32,14 @@ const Header: VFC = () => {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
-  const splitRegion = [data.region.slice(0, 2), data.region.slice(2, 4), data.region.slice(4, 6)];
-  const splitRegionLength = splitRegion.length;
-
-  const sliceByNumber = (array: {}[], number: number) => {
+  const RegionSliceByNumber = (array: any, number: number) => {
     const length = Math.ceil(array.length / number);
-    console.log(length);
+
     return new Array(length).fill().map((_, i) => array.slice(i * number, (i + 1) * number));
   };
 
-  console.log(sliceByNumber(data.region, 2));
+  const splitRegion = RegionSliceByNumber(data.region, 2);
+  const splitRegionLength = splitRegion.length;
 
   return (
     <>
@@ -57,7 +53,7 @@ const Header: VFC = () => {
               <span style={styles.span}>district</span>
               <MenuButton fontWeight="700">地区一覧</MenuButton>
             </Flex>
-            <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 1)" w="xl">
+            <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 0.8)" w="xl">
               {splitRegion.map((obj, index) => (
                 <div key={index}>
                   <Flex>
