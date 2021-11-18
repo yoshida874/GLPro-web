@@ -1,15 +1,5 @@
 import { VFC, memo } from 'react';
-import {
-  Flex,
-  Spacer,
-  Box,
-  Menu,
-  MenuButton,
-  MenuList,
-  Link,
-  MenuDivider,
-  Image,
-} from '@chakra-ui/react';
+import { Flex, Spacer, Box, Menu, MenuButton, MenuList, Link, Image } from '@chakra-ui/react';
 
 import useSWR from 'swr';
 import axios from 'axios';
@@ -21,6 +11,13 @@ const Header: VFC = () => {
     span: {
       color: '#053e62',
       fontSize: '13px',
+    },
+    hr: {
+      margin: '10px 0px',
+      height: '1px',
+      backgroundColor: 'white',
+
+      border: 'none',
     },
   };
 
@@ -38,6 +35,15 @@ const Header: VFC = () => {
   if (!data) return <div>loading...</div>;
 
   const splitRegion = [data.region.slice(0, 2), data.region.slice(2, 4), data.region.slice(4, 6)];
+  const splitRegionLength = splitRegion.length;
+
+  const sliceByNumber = (array: {}[], number: number) => {
+    const length = Math.ceil(array.length / number);
+    console.log(length);
+    return new Array(length).fill().map((_, i) => array.slice(i * number, (i + 1) * number));
+  };
+
+  console.log(sliceByNumber(data.region, 2));
 
   return (
     <>
@@ -51,53 +57,28 @@ const Header: VFC = () => {
               <span style={styles.span}>district</span>
               <MenuButton fontWeight="700">地区一覧</MenuButton>
             </Flex>
-            <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 0.8)" w="xl">
+            <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 1)" w="xl">
               {splitRegion.map((obj, index) => (
                 <div key={index}>
                   <Flex>
                     <Box flex="1" key={obj[0].id}>
                       <HeaderAreaList region={obj[0]} />
                     </Box>
+
                     {obj.length === 2 && (
                       <Box flex="1" key={obj[1].id}>
-                        <HeaderAreaList region={obj[0]} />
+                        <HeaderAreaList region={obj[1]} />
                       </Box>
                     )}
                   </Flex>
-                  <MenuDivider />
+                  {splitRegionLength !== index + 1 && <hr style={styles.hr} />}
                 </div>
               ))}
-              {/*
-               <Flex>
-                <Box flex="1">
-                  <HeaderAreaList region={data.region[0]} />
-                </Box>
-
-                <Box flex="1">
-                  <HeaderAreaList region={data.region[1]} />
-                </Box>
-              </Flex>
-              <MenuDivider />
-              <Flex>
-                <Box flex="1">
-                  <HeaderAreaList region={data.region[2]} />
-                </Box>
-                <Box flex="1">
-                  <HeaderAreaList region={data.region[3]} />
-                </Box>
-              </Flex>
-              <MenuDivider />
-              <Flex>
-                <Box flex="1">
-                  <HeaderAreaList region={data.region[4]} />
-                </Box>
-                <Box flex="1"></Box>
-              </Flex> */}
             </MenuList>
           </Menu>
 
           <Flex textAlign="center" ml="5" direction="column" fontWeight="700">
-            <span style={styles.span}>district</span>
+            <span style={styles.span}>question</span>
             <Link fontWeight="700">質問一覧</Link>
           </Flex>
         </Flex>
@@ -106,6 +87,7 @@ const Header: VFC = () => {
           <span style={styles.span}>login</span>
           <Link fontWeight="700">ログイン</Link>
         </Flex>
+        <hr />
       </Flex>
     </>
   );
