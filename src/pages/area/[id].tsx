@@ -49,10 +49,13 @@ const Area: NextPage<Props> = ({ props }) => {
         <Box w="85%" ml="auto" mr="auto">
           <Flex mt="16" flexWrap="wrap" alignItems="center">
             <Text>分類</Text>
-            <Select placeholder="Select option" w="20%" pl="16px">
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
+            <Select placeholder="選択してください" w="20%" pl="16px">
+              <option value="999">全て</option>
+              {props.category.map((element, index) => (
+                <option value={element.id} key={index}>
+                  {element.category_name}
+                </option>
+              ))}
             </Select>
             <Spacer />
             <Button bg="#48BB78" color="white">
