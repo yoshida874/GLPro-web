@@ -1,20 +1,6 @@
-import React, { VFC } from 'react';
-import {
-  Flex,
-  Spacer,
-  Box,
-  Menu,
-  MenuButton,
-  MenuList,
-  Link,
-  MenuDivider,
-  Image,
-} from '@chakra-ui/react';
-
-// import { HamburgerIcon } from '@chakra-ui/icons';
-import HeaderAreaList from './HeaderAreaList';
-import { AREA } from '../../../common/area';
-const area = AREA;
+import { VFC, memo } from 'react';
+import { Flex, Spacer, Menu, MenuButton, Link, Image } from '@chakra-ui/react';
+import RegionMenu from './RegionMenu';
 
 const Header: VFC = () => {
   const styles: { [key: string]: React.CSSProperties } = {
@@ -31,52 +17,16 @@ const Header: VFC = () => {
           <Image src="/logo.png" alt="ロゴ画像です" />
         </Flex>
         <Flex ml={50} py={3}>
-          <Menu>
+          <Menu id="area-btn">
             <Flex textAlign="center" direction="column" fontWeight="700">
               <span style={styles.span}>district</span>
               <MenuButton fontWeight="700">地区一覧</MenuButton>
             </Flex>
-            <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 0.5)" w="xl">
-              <Flex>
-                <Box flex="1">
-                  <HeaderAreaList area={area[0]} />
-                </Box>
-
-                <Box flex="1">
-                  <HeaderAreaList area={area[1]} />
-                </Box>
-              </Flex>
-              <MenuDivider />
-              <Flex>
-                <Box flex="1">
-                  <HeaderAreaList area={area[2]} />
-                </Box>
-                <Box flex="1">
-                  <HeaderAreaList area={area[1]} />
-                </Box>
-              </Flex>
-              <MenuDivider />
-              <Flex>
-                <Box flex="1">
-                  <HeaderAreaList area={area[1]} />
-                </Box>
-                <Box flex="1">
-                  <HeaderAreaList area={area[0]} />
-                </Box>
-              </Flex>
-              <MenuDivider />
-              <Flex>
-                <Box flex="1">
-                  <HeaderAreaList area={area[0]} />
-                </Box>
-                <Box flex="1"></Box>
-              </Flex>
-            </MenuList>
+            <RegionMenu />
           </Menu>
-
           <Flex textAlign="center" ml="5" direction="column" fontWeight="700">
-            <span style={styles.span}>district</span>
-            <Link fontWeight="700">質問一覧</Link>
+            <span style={styles.span}>question</span>
+            <Link>質問一覧</Link>
           </Flex>
         </Flex>
         <Spacer />
@@ -89,4 +39,4 @@ const Header: VFC = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

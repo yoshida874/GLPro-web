@@ -1,14 +1,10 @@
 import { NextPage } from 'next';
 // import Image from 'next/image';
 import { Box, Image, Flex } from '@chakra-ui/react';
-import Header from '../components/atom/header/Header';
-import Footer from '../components/atom/Footer';
 
 const Home: NextPage = () => {
   return (
     <>
-      <Header />
-
       <Box>
         <Image src="/tokyo.jpg" alt="" minW="100%" height="500px" />
       </Box>
@@ -28,8 +24,6 @@ const Home: NextPage = () => {
           <Image src="/tokyo.jpg" alt="" display="block" w="48%" height="auto" />
         </Flex>
       </Box>
-
-      <Footer />
     </>
   );
 };
