@@ -1,24 +1,19 @@
 import { VFC, memo } from 'react';
 import { Box, Link, Flex, MenuGroup } from '@chakra-ui/react';
+import { Region } from 'src/types/Header';
 
 interface Props {
-  region: {
-    name: string;
-    area: {
-      id: string;
-      name: string;
-    }[];
-  };
+  region: Region;
 }
 
-const HeaderAreaList: VFC<Props> = ({ region }) => {
+const AreaList: VFC<Props> = ({ region }) => {
   return (
     <>
       <MenuGroup title={region.name}>
         <Flex flexWrap="wrap" gridGap="6px">
           {region.area.map((element, index) => (
             <Box key={index} w="29%">
-              <Link>{element.name}</Link>
+              <Link href={`area/${element.id}`}>{element.name}</Link>
             </Box>
           ))}
         </Flex>
@@ -27,4 +22,4 @@ const HeaderAreaList: VFC<Props> = ({ region }) => {
   );
 };
 
-export default memo(HeaderAreaList);
+export default memo(AreaList);
