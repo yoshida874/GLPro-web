@@ -1,35 +1,52 @@
 import { VFC } from 'react';
 import { Box, Flex, HStack, Spacer } from '@chakra-ui/react';
 import StarRatings from 'react-star-ratings';
-import { FaMapMarker, FaTag } from 'react-icons/fa';
+import dayjs from 'dayjs';
+import { FaTag } from 'react-icons/fa';
 import { BsStopwatch } from 'react-icons/bs';
 
-const ReviewBox: VFC<any> = ({ createDate, areaName, category, content }) => {
+interface AreaDerail {
+  id: number;
+  user_Id: number;
+  area_Id: number;
+  category_id: number;
+  review_content: string;
+  evaluation: number;
+  created_at: string;
+}
+
+interface Props {
+  review: AreaDerail;
+  categories: {
+    id: number;
+    category_name: string;
+  }[];
+}
+
+const ReviewBox: VFC<Props> = ({ review, categories }) => {
+  const createdDay = dayjs(review.created_at).format('YYYY-MM-DD');
+  const category = categories.filter((category) => category.id === review.category_id);
   return (
-    <Box bg="white" borderBottom="medium solid #FAFAFA" w="100%">
+    <Box bg="white" borderBottom="medium solid #FAFAFA" w="100%" pl="4">
       <HStack flexWrap="wrap">
         <StarRatings
-          rating={5}
+          rating={review.evaluation}
           starRatedColor="#ffd500"
           numberOfStars={5}
-          starDimension="40px"
+          starDimension="32px"
           starSpacing="4px"
         />
         <Spacer />
         <Flex flexWrap="wrap" pr="4" alignItems="center">
           <BsStopwatch />
-          {createDate}
-        </Flex>
-        <Flex flexWrap="wrap" pr="4" alignItems="center">
-          <FaMapMarker color="red" />
-          {areaName}
+          {createdDay}
         </Flex>
         <Flex flexWrap="wrap" pr="12" alignItems="center">
           <FaTag color="blue" />
-          治安
+          {category[0].category_name}
         </Flex>
       </HStack>
-      <Box mt="4">{content}</Box>
+      <Box mt="4">{review.review_content}</Box>
     </Box>
   );
 };
