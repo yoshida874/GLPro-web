@@ -4,19 +4,10 @@ import StarRatings from 'react-star-ratings';
 import dayjs from 'dayjs';
 import { FaTag } from 'react-icons/fa';
 import { BsStopwatch } from 'react-icons/bs';
-
-interface AreaDerail {
-  id: number;
-  user_Id: number;
-  area_Id: number;
-  category_id: number;
-  review_content: string;
-  evaluation: number;
-  created_at: string;
-}
+import { Review } from 'src/types/review';
 
 interface Props {
-  review: AreaDerail;
+  review: Review;
   categories: {
     id: number;
     category_name: string;

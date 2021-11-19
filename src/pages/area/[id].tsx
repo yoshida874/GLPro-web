@@ -5,23 +5,14 @@ import axios from 'axios';
 import ReviewBox from 'src/components/areaDetail/ReviewBox';
 import CategoryRate from 'src/components/areaDetail/CategoryRate';
 import { Category } from 'src/types/category';
+import { Review } from 'src/types/review';
 
 interface Props {
   props: {
     name: string;
-    areaDetails: AreaDerail[];
+    areaDetails: Review[];
     category: Category[];
   };
-}
-
-interface AreaDerail {
-  id: number;
-  user_Id: number;
-  area_Id: number;
-  category_id: number;
-  review_content: string;
-  evaluation: number;
-  created_at: string;
 }
 
 const Area: NextPage<Props> = ({ props }) => {
@@ -76,7 +67,7 @@ const Area: NextPage<Props> = ({ props }) => {
             </Text>
           </Flex>
           <Box ml="auto" mr="auto">
-            {props.areaDetails.map((review: AreaDerail, index: number) => (
+            {props.areaDetails.map((review, index) => (
               <Box key={index}>
                 <ReviewBox review={review} categories={props.category} />
               </Box>
