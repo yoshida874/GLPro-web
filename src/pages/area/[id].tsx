@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import { Box, Image, Flex, Text, Divider, Select, Button, Spacer } from '@chakra-ui/react';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 import ReviewBox from 'src/components/areaDetail/ReviewBox';
 import CategoryRate from 'src/components/areaDetail/CategoryRate';
@@ -24,6 +25,17 @@ const Area: NextPage<Props> = ({ props }) => {
     { name: '治安', status: '3.0' },
     { name: '交通', status: '1.0' },
   ];
+
+  const router = useRouter();
+
+  const id = router.query.id; // id取得したら後で変更
+
+  const movePostEvent = () => {
+    router.push({
+      pathname: '../reviewpost',
+      query: { id: id },
+    });
+  };
 
   return (
     <>
@@ -58,7 +70,8 @@ const Area: NextPage<Props> = ({ props }) => {
               ))}
             </Select>
             <Spacer />
-            <Button bg="#48BB78" color="white">
+
+            <Button bg="#48BB78" color="white" onClick={() => movePostEvent()}>
               レビュー投稿
             </Button>
           </Flex>

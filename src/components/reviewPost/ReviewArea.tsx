@@ -1,24 +1,23 @@
 import { VFC, useState } from 'react';
 import { Box, Flex, Text, Textarea } from '@chakra-ui/react';
 import { Rating } from 'react-simple-star-rating';
-// import { useForm } from 'react-hook-form';
 
 interface Props {
   category: { id: number; name: String };
-  result: { [key: number]: { rate: number; content: String } };
+  result: { [key: string]: { rate: number; content: String } };
   setResult: any;
 }
 
 const ReviewArea: VFC<Props> = ({ category, result, setResult }) => {
   const [rating, setRating] = useState(1);
   const [text, setText] = useState('');
+
   const id = category.id;
 
   // 星の評価数変更
   const handleRating = (rate: number): void => {
     setRating(rate);
 
-    // result[index].rate = rate;
     const reviewChange = {
       rate: rate,
       content: result[id].content,

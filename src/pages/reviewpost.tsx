@@ -1,22 +1,68 @@
 import { NextPage } from 'next';
 import { Box, Flex, Text, Button } from '@chakra-ui/react';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import axios from 'axios';
+
 import ReviewArea from 'src/components/reviewPost/ReviewArea';
 
-// import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+interface Result {
+  [key: string]: { rate: number; content: string };
+}
+
+interface Reviews {
+  evaluation: number;
+  review_content: string;
+  category_id: number;
+  area_id: number;
+  user_id: number;
+}
+
+const reviews: Reviews[] = [];
 
 const ReviewPost: NextPage = () => {
-  const [result, setResult] = useState({
-    1: { rate: 1, content: '1です' },
-    2: { rate: 1, content: '2です' },
-    3: { rate: 1, content: '3です' },
-    4: { rate: 1, content: '4です' },
-    5: { rate: 1, content: '5です' },
-    6: { rate: 1, content: '6です' },
+  const [result, setResult] = useState<Result>({
+    1: { rate: 1, content: '' },
+    2: { rate: 1, content: '' },
+    3: { rate: 1, content: '' },
+    4: { rate: 1, content: '' },
+    5: { rate: 1, content: '' },
+    6: { rate: 1, content: '' },
   });
 
-  const submitEvent = () => {
-    console.log(result[1].content);
+  // areaid取得
+  const router = useRouter();
+  // const areaId = router.query.id;
+  const areaId = 1;
+
+  const userid = 1;
+
+  const submitEvent = async () => {
+    Object.keys(result).map((key, index) => {
+      const onceData = result[key];
+
+      const data = {
+        evaluation: onceData.rate,
+        review_content: onceData.content,
+        category_id: index + 1,
+        area_id: areaId,
+        user_id: userid,
+      };
+      reviews.push(data);
+    });
+
+    const body = JSON.stringify({
+      Reviews: reviews,
+    });
+
+    // await axios
+    //   .post('http://localhost:8080/review/create', body)
+    //   .then((response) => {
+    //     console.log('成功: ' + response.data.text);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 
   const categories = [
