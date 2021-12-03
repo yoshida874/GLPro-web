@@ -1,8 +1,8 @@
 export interface Region {
   id: string;
-  name: string;
+  region_name: string;
   area: {
     id: string;
-    name: string;
+    area_name: string;
   }[];
 }

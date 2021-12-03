@@ -6,7 +6,7 @@ import AreaList from './AreaList';
 import { Region } from 'src/types/Header';
 
 const fetcher = async () => {
-  const res = await axios.get('https://9c0d98f3-468f-4409-ad83-7839a6c9cce9.mock.pstmn.io/area');
+  const res = await axios.get('http://localhost:8080/region');
   return res.data;
 };
 
@@ -25,18 +25,15 @@ const RegionMenu: VFC = () => {
     },
   };
 
-  const { data } = useSWR(
-    'https://9c0d98f3-468f-4409-ad83-7839a6c9cce9.mock.pstmn.io/area',
-    fetcher
-  );
+  const { data } = useSWR('http://localhost:8080/region', fetcher);
 
   if (!data) return <div></div>;
 
   // DBから取得した地区データを2個ずつに分割し二次元配列に格納する
-  const regionSlice = (array: Region[]): Region[][] => {
-    const length = Math.ceil(array.length / 2);
+  const regionSlice = (regions: Region[]): Region[][] => {
+    const regionLength = Math.ceil(regions.length / 2);
 
-    return new Array(length).fill(0).map((_, i) => array.slice(i * 2, (i + 1) * 2));
+    return new Array(regionLength).fill(0).map((_, i) => regions.slice(i * 2, (i + 1) * 2));
   };
 
   const splitRegion = regionSlice(data.region);

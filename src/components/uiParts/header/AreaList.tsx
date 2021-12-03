@@ -15,11 +15,11 @@ interface Props {
 const AreaList: VFC<Props> = ({ region }) => {
   return (
     <>
-      <MenuGroup title={region.name}>
+      <MenuGroup title={region.region_name}>
         <Flex flexWrap="wrap" gridGap="6px">
           {region.area.map((element, index) => (
-            <Box key={index} w="29%">
-              <Link href={`area/${element.id}`}>{element.name}</Link>
+            <Box key={index} pl="13px" w="29%">
+              <Link href={`area/${element.id}`}>{element.area_name}</Link>
             </Box>
           ))}
         </Flex>
