@@ -1,5 +1,5 @@
 import { VFC, memo } from 'react';
-import { Flex, Spacer, Menu, MenuButton, Link, Image } from '@chakra-ui/react';
+import { Flex, Spacer, Menu, MenuButton, Image, Link } from '@chakra-ui/react';
 import RegionMenu from './RegionMenu';
 
 /**
@@ -22,21 +22,33 @@ const Header: VFC = () => {
         </Flex>
         <Flex ml={50} py={3}>
           <Menu id="area-btn">
-            <Flex textAlign="center" direction="column" fontWeight="700">
-              <span style={styles.span}>district</span>
-              <MenuButton fontWeight="700">地区一覧</MenuButton>
+            <Flex textAlign="center" direction="column">
+              <MenuButton fontWeight="700">
+                <Flex wrap="wrap" direction="column">
+                  <span style={styles.span}>district</span>
+                  <span>地区一覧</span>
+                </Flex>
+              </MenuButton>
             </Flex>
             <RegionMenu />
           </Menu>
-          <Flex textAlign="center" ml="5" direction="column" fontWeight="700">
-            <span style={styles.span}>question</span>
-            <Link>質問一覧</Link>
+          <Flex textAlign="center" ml="5" direction="column">
+            <Link fontWeight="700">
+              <Flex wrap="wrap" direction="column">
+                <span style={styles.span}>question</span>
+                <span>質問一覧</span>
+              </Flex>
+            </Link>
           </Flex>
         </Flex>
         <Spacer />
-        <Flex py={3} textAlign="center" ml="5" direction="column" fontWeight="700">
-          <span style={styles.span}>login</span>
-          <Link fontWeight="700">ログイン</Link>
+        <Flex py={3} textAlign="center" ml="5" direction="column">
+          <Link fontWeight="700">
+            <Flex wrap="wrap" direction="column">
+              <span style={styles.span}>login</span>
+              <span>ログイン</span>
+            </Flex>
+          </Link>
         </Flex>
       </Flex>
     </>
