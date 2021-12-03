@@ -2,6 +2,10 @@ import { VFC, memo } from 'react';
 import { Flex, Spacer, Menu, MenuButton, Link, Image } from '@chakra-ui/react';
 import RegionMenu from './RegionMenu';
 
+/**
+ * Headerの親コンポーネント
+ * @returns
+ */
 const Header: VFC = () => {
   const styles: { [key: string]: React.CSSProperties } = {
     span: {

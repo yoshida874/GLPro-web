@@ -5,6 +5,15 @@ import { Flex, Box, MenuList } from '@chakra-ui/react';
 import AreaList from './AreaList';
 import { Region } from 'src/types/Header';
 
+const fetcher = async () => {
+  const res = await axios.get('https://9c0d98f3-468f-4409-ad83-7839a6c9cce9.mock.pstmn.io/area');
+  return res.data;
+};
+
+/**
+ * 地区一覧をクリックした際に開くBox
+ * @returns
+ */
 const RegionMenu: VFC = () => {
   const styles: { [key: string]: React.CSSProperties } = {
     hr: {
@@ -14,11 +23,6 @@ const RegionMenu: VFC = () => {
 
       border: 'none',
     },
-  };
-
-  const fetcher = async () => {
-    const res = await axios.get('https://9c0d98f3-468f-4409-ad83-7839a6c9cce9.mock.pstmn.io/area');
-    return res.data;
   };
 
   const { data } = useSWR(

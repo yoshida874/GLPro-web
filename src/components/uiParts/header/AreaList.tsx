@@ -6,6 +6,12 @@ interface Props {
   region: Region;
 }
 
+/**
+ * RegionMenuから呼び出される
+ * 地区一覧のMenu
+ * @param region
+ * @returns
+ */
 const AreaList: VFC<Props> = ({ region }) => {
   return (
     <>

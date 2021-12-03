@@ -1,7 +1,7 @@
 import { ChakraProvider, Box } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
-import Header from '../components/atom/header/Header';
-import Footer from '../components/atom/Footer';
+import Header from '../components/uiParts/header/Header';
+import Footer from '../components/uiParts/Footer';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
