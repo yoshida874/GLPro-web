@@ -18,9 +18,16 @@ interface Reviews {
   evaluation: number;
 }
 
-const reviews: Reviews[] = [];
-
 const ReviewPost: NextPage = () => {
+  const router = useRouter();
+  const reviews: Reviews[] = [];
+
+  // areaid取得
+  const areaId = Number(router.query.id);
+
+  // userid取得していなから定数設定
+  const USER_ID = 1;
+
   const [result, setResult] = useState<Result>({
     1: { rate: 1, content: '' },
     2: { rate: 1, content: '' },
@@ -39,31 +46,24 @@ const ReviewPost: NextPage = () => {
     { id: 6, name: '交通' },
   ];
 
-  // areaid取得
-  const router = useRouter();
-  const areaId = Number(router.query.id);
-
-  // userid取得していなから定数で使用
-  const userid = 1;
-
   const submitEvent = async () => {
     // reviews配列に格納
-    Object.keys(result).map((key, index) => {
+    Object.keys(result).map((key) => {
       const onceData = result[key];
 
-      const data = {
-        user_id: userid,
+      const reviewData = {
+        user_id: USER_ID,
         area_id: areaId,
-        category_id: index + 1,
+        category_id: Number(key),
         review_content: onceData.content,
         evaluation: onceData.rate,
       };
-      reviews.push(data);
+      reviews.push(reviewData);
     });
 
-    //　reviewsをJson変換
-    const data = { Reviews: reviews };
-    const body = Buffer.from(JSON.stringify(data));
+    // review変換
+    const reviewObj = { Reviews: reviews };
+    const body = Buffer.from(JSON.stringify(reviewObj));
 
     // Post
     await axios
