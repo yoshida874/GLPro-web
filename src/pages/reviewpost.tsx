@@ -61,9 +61,7 @@ const ReviewPost: NextPage = () => {
       reviews.push(reviewData);
     });
 
-    // review変換
-    const reviewObj = { Reviews: reviews };
-    const body = Buffer.from(JSON.stringify(reviewObj));
+    const body = { Reviews: reviews };
 
     // Post
     await axios
