@@ -4,23 +4,16 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 
+import { Review } from 'src/types/review';
+
 import ReviewArea from 'src/components/reviewPost/ReviewArea';
 
 interface Result {
   [key: string]: { rate: number; content: string };
 }
 
-interface Reviews {
-  user_id: number;
-  area_id: number;
-  category_id: number;
-  review_content: string;
-  evaluation: number;
-}
-
 const ReviewPost: NextPage = () => {
   const router = useRouter();
-  const reviews: Reviews[] = [];
 
   // areaid取得
   const areaId = Number(router.query.id);
@@ -47,6 +40,7 @@ const ReviewPost: NextPage = () => {
   ];
 
   const submitEvent = async () => {
+    const reviews: Review[] = [];
     // reviews配列に格納
     Object.keys(result).map((key) => {
       const onceData = result[key];
