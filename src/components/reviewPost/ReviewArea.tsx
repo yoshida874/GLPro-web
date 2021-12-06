@@ -1,4 +1,4 @@
-import React, { VFC, useState } from 'react';
+import { VFC, useState, ChangeEvent } from 'react';
 import { Box, Flex, Text, Textarea } from '@chakra-ui/react';
 import { Rating } from 'react-simple-star-rating';
 
@@ -26,7 +26,7 @@ const ReviewArea: VFC<Props> = ({ category, result, setResult }) => {
   };
 
   //　レビュー書き込み時state中身更新
-  const InputContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const InputContent = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     const text = e.target.value;
 
     const reviewChange = {

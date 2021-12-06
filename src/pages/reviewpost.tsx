@@ -64,16 +64,14 @@ const ReviewPost: NextPage = () => {
     const body = { Reviews: reviews };
 
     // Post
-    await axios
-      .post('http://localhost:8080/review/create', body, {
+    try {
+      const res = await axios.post('http://localhost:8080/review/create', body, {
         headers: { 'content-type': 'application/json' },
-      })
-      .then((response) => {
-        console.log('成功: ' + response.data.text);
-      })
-      .catch((error) => {
-        console.log(error);
       });
+      console.log('成功: ' + res.data.text);
+    } catch (e) {
+      console.log('エラー' + e);
+    }
   };
 
   return (
