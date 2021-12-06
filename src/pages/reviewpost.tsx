@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 
 import { Review } from 'src/types/review';
-
 import ReviewArea from 'src/components/reviewPost/ReviewArea';
 
 interface Result {
@@ -31,12 +30,12 @@ const ReviewPost: NextPage = () => {
   });
 
   const categories = [
-    { id: 1, name: '物価' },
-    { id: 2, name: '品揃え' },
-    { id: 3, name: '子育て' },
-    { id: 4, name: '家賃' },
-    { id: 5, name: '治安' },
-    { id: 6, name: '交通' },
+    { id: 1, name: '治安' },
+    { id: 2, name: '交通' },
+    { id: 3, name: '物価' },
+    { id: 4, name: '子育て' },
+    { id: 5, name: '家賃' },
+    { id: 6, name: '品揃え' },
   ];
 
   const submitEvent = async () => {
