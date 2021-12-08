@@ -28,7 +28,7 @@ const CategoryBtnGroup: VFC<Props> = ({ categories, selected, setSelected }) => 
           isDisabled={999 === selected}
           onClick={() => onClickEvent(999)}
         >
-          全部
+          全て
         </Button>
         {categories.map((category, index) => (
           <Button
