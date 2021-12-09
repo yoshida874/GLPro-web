@@ -48,7 +48,7 @@ const Area: NextPage<Props> = ({ props }) => {
     });
   };
 
-  // カテゴリーの平均値計算,Stateに結果を代入
+  // カテゴリーの平均値計算,statusに結果を代入
   categories.map((category, index) => {
     const areaByCategory = props.areaDetails.filter((area) => {
       return area.category_id === index + 1;
@@ -58,7 +58,7 @@ const Area: NextPage<Props> = ({ props }) => {
       return sum + element.evaluation;
     }, 0);
 
-    const average = total / areaByCategory.length;
+    const average = Math.round((total / areaByCategory.length) * 10) / 10;
     category.status = String(average);
   });
 

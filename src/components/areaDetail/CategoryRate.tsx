@@ -22,7 +22,7 @@ const CategoryRate: VFC<Props> = ({ category }) => {
         starDimension="35px"
         starSpacing="4px"
       />
-      <Text ml="4" fontSize="20px">
+      <Text ml="5" fontSize="20px" w="10" align="center">
         {category.status}
       </Text>
     </>
