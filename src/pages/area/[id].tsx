@@ -31,21 +31,36 @@ const Area: NextPage<Props> = ({ props }) => {
     setDisplayingReview(reviews);
   }, [props.areaDetails, selectedCategory]);
 
+  const id = router.query.id;
   const categories = [
-    { name: '物価', status: '1.0' },
-    { name: '品揃え', status: '1.0' },
-    { name: '子育て', status: '4.0' },
-    { name: '家賃', status: '2.0' },
-    { name: '治安', status: '3.0' },
-    { name: '交通', status: '1.0' },
+    { name: '治安', status: '0' },
+    { name: '交通', status: '0' },
+    { name: '物価', status: '0' },
+    { name: '子育て', status: '0' },
+    { name: '家賃', status: '0' },
+    { name: '品揃え', status: '0' },
   ];
 
   const movePostEvent = () => {
     router.push({
       pathname: '../reviewpost',
-      query: { id: router.query.id },
+      query: { id: id },
     });
   };
+
+  // カテゴリーの平均値計算,Stateに結果を代入
+  categories.map((category, index) => {
+    const areaByCategory = props.areaDetails.filter((area) => {
+      return area.category_id === index + 1;
+    });
+
+    const total = areaByCategory.reduce((sum, element) => {
+      return sum + element.evaluation;
+    }, 0);
+
+    const average = total / areaByCategory.length;
+    category.status = String(average);
+  });
 
   return (
     <>
