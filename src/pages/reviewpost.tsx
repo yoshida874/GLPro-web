@@ -4,23 +4,22 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 
+import { Review } from 'src/types/review';
 import ReviewArea from 'src/components/reviewPost/ReviewArea';
 
 interface Result {
   [key: string]: { rate: number; content: string };
 }
 
-interface Reviews {
-  user_id: number;
-  area_id: number;
-  category_id: number;
-  review_content: string;
-  evaluation: number;
-}
-
-const reviews: Reviews[] = [];
-
 const ReviewPost: NextPage = () => {
+  const router = useRouter();
+
+  // areaid取得
+  const areaId = Number(router.query.id);
+
+  // userid取得していなから定数設定
+  const USER_ID = 1;
+
   const [result, setResult] = useState<Result>({
     1: { rate: 1, content: '' },
     2: { rate: 1, content: '' },
@@ -31,51 +30,41 @@ const ReviewPost: NextPage = () => {
   });
 
   const categories = [
-    { id: 1, name: '物価' },
-    { id: 2, name: '品揃え' },
-    { id: 3, name: '子育て' },
-    { id: 4, name: '家賃' },
-    { id: 5, name: '治安' },
-    { id: 6, name: '交通' },
+    { id: 1, name: '治安' },
+    { id: 2, name: '交通' },
+    { id: 3, name: '物価' },
+    { id: 4, name: '子育て' },
+    { id: 5, name: '家賃' },
+    { id: 6, name: '品揃え' },
   ];
 
-  // areaid取得
-  const router = useRouter();
-  const areaId = Number(router.query.id);
-
-  // userid取得していなから定数で使用
-  const userid = 1;
-
   const submitEvent = async () => {
+    const reviews: Review[] = [];
     // reviews配列に格納
-    Object.keys(result).map((key, index) => {
+    Object.keys(result).map((key) => {
       const onceData = result[key];
 
-      const data = {
-        user_id: userid,
+      const reviewData = {
+        user_id: USER_ID,
         area_id: areaId,
-        category_id: index + 1,
+        category_id: Number(key),
         review_content: onceData.content,
         evaluation: onceData.rate,
       };
-      reviews.push(data);
+      reviews.push(reviewData);
     });
 
-    //　reviewsをJson変換
-    const data = { Reviews: reviews };
-    const body = Buffer.from(JSON.stringify(data));
+    const body = { Reviews: reviews };
 
     // Post
-    await axios
-      .post('http://localhost:8080/review/create', body, {
+    try {
+      const res = await axios.post('http://localhost:8080/review/create', body, {
         headers: { 'content-type': 'application/json' },
-      })
-      .then((response) => {
-        console.log('成功: ' + response.data.text);
-      })
-      .catch((error) => {
-        console.log(error);
       });
+      console.log('成功: ' + res.data.text);
+    } catch (e) {
+      console.log('エラー' + e);
+    }
   };
 
   return (

@@ -1,4 +1,4 @@
-import { VFC, useState } from 'react';
+import { VFC, useState, ChangeEvent } from 'react';
 import { Box, Flex, Text, Textarea } from '@chakra-ui/react';
 import { Rating } from 'react-simple-star-rating';
 
@@ -17,7 +17,6 @@ const ReviewArea: VFC<Props> = ({ category, result, setResult }) => {
   // 星の評価数変更
   const handleRating = (rate: number): void => {
     setRating(rate);
-
     const reviewChange = {
       rate: rate,
       content: result[id].content,
@@ -26,7 +25,8 @@ const ReviewArea: VFC<Props> = ({ category, result, setResult }) => {
     setResult({ ...result, [id]: reviewChange });
   };
 
-  const InputContent = (e: any) => {
+  //　レビュー書き込み時state中身更新
+  const InputContent = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     const text = e.target.value;
 
     const reviewChange = {
@@ -60,7 +60,9 @@ const ReviewArea: VFC<Props> = ({ category, result, setResult }) => {
           resize="vertical"
           height="150px"
           value={text}
-          onChange={InputContent}
+          onChange={(e) => {
+            InputContent(e);
+          }}
         />
       </Flex>
     </>
