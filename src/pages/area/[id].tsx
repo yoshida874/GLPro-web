@@ -31,7 +31,6 @@ const Area: NextPage<Props> = ({ props }) => {
     setDisplayingReview(reviews);
   }, [props.areaDetails, selectedCategory]);
 
-  const id = router.query.id; // id取得したら後で変更
   const categories = [
     { name: '物価', status: '1.0' },
     { name: '品揃え', status: '1.0' },
@@ -44,7 +43,7 @@ const Area: NextPage<Props> = ({ props }) => {
   const movePostEvent = () => {
     router.push({
       pathname: '../reviewpost',
-      query: { id: id },
+      query: { id: router.query.id },
     });
   };
 
