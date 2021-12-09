@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
-import { Box, Image, Flex, Text, Divider, Select, Button, Spacer } from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
+import { Box, Image, Flex, Text, Divider, Button, Spacer } from '@chakra-ui/react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
@@ -7,6 +8,7 @@ import ReviewBox from 'src/components/areaDetail/ReviewBox';
 import CategoryRate from 'src/components/areaDetail/CategoryRate';
 import { Category } from 'src/types/category';
 import { Review } from 'src/types/review';
+import CategoryBtnGroup from 'src/components/areaDetail/CategoryBtnGroup';
 
 interface Props {
   props: {
@@ -17,6 +19,18 @@ interface Props {
 }
 
 const Area: NextPage<Props> = ({ props }) => {
+  const router = useRouter();
+  const [selectedCategory, setSelectedCategory] = useState(999);
+  const [displayingReview, setDisplayingReview] = useState<Review[]>([]);
+
+  useEffect(() => {
+    // category選択時のレビュー切り替え
+    const reviews = props.areaDetails.filter((element) => {
+      return element.category_id === selectedCategory || 999 === selectedCategory;
+    });
+    setDisplayingReview(reviews);
+  }, [props.areaDetails, selectedCategory]);
+
   const categories = [
     { name: '物価', status: '1.0' },
     { name: '品揃え', status: '1.0' },
@@ -26,14 +40,10 @@ const Area: NextPage<Props> = ({ props }) => {
     { name: '交通', status: '1.0' },
   ];
 
-  const router = useRouter();
-
-  const id = router.query.id; // id取得したら後で変更
-
   const movePostEvent = () => {
     router.push({
       pathname: '../reviewpost',
-      query: { id: id },
+      query: { id: router.query.id },
     });
   };
 
@@ -59,31 +69,26 @@ const Area: NextPage<Props> = ({ props }) => {
         </Flex>
 
         <Box w="85%" ml="auto" mr="auto">
-          <Flex mt="16" flexWrap="wrap" alignItems="center">
-            <Text>分類</Text>
-            <Select placeholder="選択してください" w="20%" pl="16px">
-              <option value="999">全て</option>
-              {props.category.map((element, index) => (
-                <option value={element.id} key={index}>
-                  {element.category_name}
-                </option>
-              ))}
-            </Select>
-            <Spacer />
-
-            <Button bg="#48BB78" color="white" onClick={() => movePostEvent()}>
-              レビュー投稿
-            </Button>
-          </Flex>
+          <Box mt="16">
+            <CategoryBtnGroup
+              categories={props.category}
+              selected={selectedCategory}
+              setSelected={setSelectedCategory}
+            />
+          </Box>
 
           <Flex mt="12" alignItems="center">
             <Text fontSize="3xl">件数</Text>
             <Text fontSize="2xl" ml="4">
-              {props.areaDetails.length}件
+              {displayingReview.length}件
             </Text>
+            <Spacer />
+            <Button bg="#48BB78" color="white" onClick={() => movePostEvent()}>
+              レビュー投稿
+            </Button>
           </Flex>
-          <Box ml="auto" mr="auto">
-            {props.areaDetails.map((review, index) => (
+          <Box ml="auto" mr="auto" mt="1">
+            {displayingReview.map((review, index) => (
               <Box key={index}>
                 <ReviewBox review={review} categories={props.category} />
               </Box>
