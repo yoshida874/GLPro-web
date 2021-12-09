@@ -1,9 +1,10 @@
 import { VFC, useState, ChangeEvent } from 'react';
 import { Box, Flex, Text, Textarea } from '@chakra-ui/react';
 import { Rating } from 'react-simple-star-rating';
+import { Category } from 'src/types/category';
 
 interface Props {
-  category: { id: number; name: String };
+  category: Category;
   result: { [key: string]: { rate: number; content: String } };
   setResult: any;
 }
@@ -43,7 +44,7 @@ const ReviewArea: VFC<Props> = ({ category, result, setResult }) => {
       <Flex alignItems="center">
         <Box width="200px">
           <Text fontSize="36px" name="name">
-            {category.name}
+            {category.category_name}
           </Text>
         </Box>
 
