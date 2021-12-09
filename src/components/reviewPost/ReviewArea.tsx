@@ -1,9 +1,10 @@
 import { VFC, useState, ChangeEvent } from 'react';
 import { Box, Flex, Text, Textarea } from '@chakra-ui/react';
 import { Rating } from 'react-simple-star-rating';
+import { Category } from 'src/types/category';
 
 interface Props {
-  category: { id: number; category_name: String };
+  category: Category;
   result: { [key: string]: { rate: number; content: String } };
   setResult: any;
 }

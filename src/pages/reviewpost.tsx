@@ -13,6 +13,11 @@ interface Result {
   [key: string]: { rate: number; content: string };
 }
 
+const fetcher = async () => {
+  const res = await axios.get('http://localhost:8080/category');
+  return res.data;
+};
+
 const ReviewPost: NextPage = () => {
   const router = useRouter();
 
@@ -30,12 +35,6 @@ const ReviewPost: NextPage = () => {
     5: { rate: 1, content: '' },
     6: { rate: 1, content: '' },
   });
-
-  // カテゴリー取得
-  const fetcher = async () => {
-    const res = await axios.get('http://localhost:8080/category');
-    return res.data;
-  };
 
   const { data } = useSWR('http://localhost:8080/category', fetcher);
   if (!data) return <div></div>;
