@@ -2,28 +2,27 @@ import { VFC } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 import StarRatings from 'react-star-ratings';
 
+import { Category } from 'src/types/category';
 interface Props {
-  category: {
-    name: string;
-    status: string;
-  };
+  category: Category;
+  status: number;
 }
 
-const CategoryRate: VFC<Props> = ({ category }) => {
+const CategoryRate: VFC<Props> = ({ category, status }) => {
   return (
     <>
       <Box width="15%">
-        <Text fontSize="20px">{category.name}</Text>
+        <Text fontSize="20px">{category.category_name}</Text>
       </Box>
       <StarRatings
-        rating={Number(category.status)}
+        rating={status}
         starRatedColor="#ffd500"
         numberOfStars={5}
         starDimension="35px"
         starSpacing="4px"
       />
-      <Text ml="4" fontSize="20px">
-        {category.status}
+      <Text ml="5" fontSize="20px" w="10" align="center">
+        {status}
       </Text>
     </>
   );

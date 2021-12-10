@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import { useState, useEffect } from 'react';
 import { Box, Image, Flex, Text, Divider, Button, Spacer } from '@chakra-ui/react';
 import axios from 'axios';
+import useSWR from 'swr';
 import { useRouter } from 'next/router';
 
 import ReviewBox from 'src/components/areaDetail/ReviewBox';
@@ -18,6 +19,11 @@ interface Props {
   };
 }
 
+const fetcher = async () => {
+  const res = await axios.get('http://localhost:8080/category');
+  return res.data;
+};
+
 const Area: NextPage<Props> = ({ props }) => {
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState(999);
@@ -31,21 +37,35 @@ const Area: NextPage<Props> = ({ props }) => {
     setDisplayingReview(reviews);
   }, [props.areaDetails, selectedCategory]);
 
-  const categories = [
-    { name: '物価', status: '1.0' },
-    { name: '品揃え', status: '1.0' },
-    { name: '子育て', status: '4.0' },
-    { name: '家賃', status: '2.0' },
-    { name: '治安', status: '3.0' },
-    { name: '交通', status: '1.0' },
-  ];
+  // カテゴリーの種類DBから取得
+  const { data } = useSWR('http://localhost:8080/category', fetcher);
+  if (!data) return <div></div>;
+  const category: Category[] = data;
 
+  // レビュー投稿画面へ遷移する際に使用するareaidの取得、クエリパラメータの設定
+  const id = router.query.id;
   const movePostEvent = () => {
     router.push({
       pathname: '../reviewpost',
-      query: { id: router.query.id },
+      query: { id: id },
     });
   };
+
+  // カテゴリーの平均値計算,status配列に結果を代入
+  const statuses: number[] = [];
+  category.map((_, index) => {
+    const areaByCategory = props.areaDetails.filter((area) => {
+      return area.category_id === category[index].id;
+    });
+
+    const total = areaByCategory.reduce((sum, element) => {
+      return sum + element.evaluation;
+    }, 0);
+
+    // 平均評価点は少数第1位で四捨五入
+    const average = Math.round((total / areaByCategory.length) * 10) / 10;
+    statuses.push(average);
+  });
 
   return (
     <>
@@ -61,9 +81,9 @@ const Area: NextPage<Props> = ({ props }) => {
         <Divider mt="4" mb="4" />
 
         <Flex flexWrap="wrap" justifyContent="center" gridGap="3" alignItems="center">
-          {categories.map((category, index) => (
+          {category.map((singleCategory, index) => (
             <Flex key={index} w="44%" justifyContent="center" alignItems="center">
-              <CategoryRate category={category} />
+              <CategoryRate category={singleCategory} status={statuses[index]} />
             </Flex>
           ))}
         </Flex>
