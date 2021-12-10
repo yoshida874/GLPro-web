@@ -52,7 +52,7 @@ const Area: NextPage<Props> = ({ props }) => {
   };
 
   // カテゴリーの平均値計算,status配列に結果を代入
-  const status: number[] = [];
+  const statuses: number[] = [];
   category.map((_, index) => {
     const areaByCategory = props.areaDetails.filter((area) => {
       return area.category_id === category[index].id;
@@ -64,7 +64,7 @@ const Area: NextPage<Props> = ({ props }) => {
 
     // 平均評価点は少数第1位で四捨五入
     const average = Math.round((total / areaByCategory.length) * 10) / 10;
-    status.push(average);
+    statuses.push(average);
   });
 
   return (
@@ -83,7 +83,7 @@ const Area: NextPage<Props> = ({ props }) => {
         <Flex flexWrap="wrap" justifyContent="center" gridGap="3" alignItems="center">
           {category.map((singleCategory, index) => (
             <Flex key={index} w="44%" justifyContent="center" alignItems="center">
-              <CategoryRate category={singleCategory} status={status[index]} />
+              <CategoryRate category={singleCategory} status={statuses[index]} />
             </Flex>
           ))}
         </Flex>
