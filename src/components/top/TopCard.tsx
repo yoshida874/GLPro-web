@@ -25,6 +25,13 @@ const TopCard: VFC<Props> = ({ title, children, subtitle, img }) => {
             <Box mt="7" ml="4">
               <Text fontSize="xl">{children}</Text>
             </Box>
+            {title === 'Quesiton' && (
+              <Box mt="10%" ml="70%">
+                <Text fontSize="2xl" textDecoration="underline">
+                  View Question →
+                </Text>
+              </Box>
+            )}
           </Box>
         </Flex>
         <Image src={`/${img}`} alt="" display="block" w="40%" height="100%" mt="10%" />

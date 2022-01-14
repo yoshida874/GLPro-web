@@ -23,8 +23,10 @@ const Home: NextPage = () => {
         <TopCard title="Purpose" subtitle="各地域の総合レビュー" img="tokyo.jpg">
           東京、引っ越しの際に東京がどんな場所なのか東京に住んでる方の素直な意見を見ることができ、地域についてのイメージをつかめます
         </TopCard>
-
         <TopCard title="Review" subtitle="様々な観点からの素直な意見" img="review.jpg">
+          治安、物価、交通など様々な項目に分けて住んでる皆さんの意見や感想など確認できます。
+        </TopCard>
+        <TopCard title="Quesiton" subtitle="疑問を解消する" img="review.jpg">
           治安、物価、交通など様々な項目に分けて住んでる皆さんの意見や感想など確認できます。
         </TopCard>
       </Box>
