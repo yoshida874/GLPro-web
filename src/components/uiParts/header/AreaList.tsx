@@ -19,7 +19,7 @@ const AreaList: VFC<Props> = ({ region }) => {
         <Flex flexWrap="wrap" gridGap="6px">
           {region.area.map((element, index) => (
             <Box key={index} pl="13px" w="29%">
-              <Link href={`area/${element.id}`}>{element.area_name}</Link>
+              <Link href={`/area/${element.id}`}>{element.area_name}</Link>
             </Box>
           ))}
         </Flex>

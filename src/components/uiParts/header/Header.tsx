@@ -1,5 +1,5 @@
 import { VFC, memo } from 'react';
-import { Flex, Spacer, Menu, MenuButton, Image, Link } from '@chakra-ui/react';
+import { Flex, Menu, MenuButton, Box, Image, Link } from '@chakra-ui/react';
 import RegionMenu from './RegionMenu';
 
 /**
@@ -15,15 +15,24 @@ const Header: VFC = () => {
   };
 
   return (
-    <>
-      <Flex bg="#48BB78" px={4} h="74px" w="100%" spacing={3}>
+    <Box bg="#48BB78" h="74px" w="100%">
+      <Flex
+        maxW="1600px"
+        m={[0, 'auto']}
+        px={20}
+        pt={1.5}
+        justifyContent="space-between"
+        align-items="center"
+      >
+        <Box>
+          <Link href="/" _focus={{ outline: 'none' }}>
+            <Image src="/logo.png" alt="ロゴ画像です" maxW="170px" />
+          </Link>
+        </Box>
         <Flex>
-          <Image src="/logo.png" alt="ロゴ画像です" />
-        </Flex>
-        <Flex ml={50} py={3}>
           <Menu id="area-btn">
-            <Flex textAlign="center" direction="column">
-              <MenuButton fontWeight="700">
+            <Flex textAlign="center">
+              <MenuButton fontWeight="700" _hover={{ textDecoration: 'underline' }}>
                 <Flex wrap="wrap" direction="column">
                   <span style={styles.span}>district</span>
                   <span>地区一覧</span>
@@ -32,7 +41,8 @@ const Header: VFC = () => {
             </Flex>
             <RegionMenu />
           </Menu>
-          <Flex textAlign="center" ml="5" direction="column">
+
+          <Flex textAlign="center" ml="5" alignItems="center">
             <Link fontWeight="700">
               <Flex wrap="wrap" direction="column">
                 <span style={styles.span}>question</span>
@@ -40,18 +50,18 @@ const Header: VFC = () => {
               </Flex>
             </Link>
           </Flex>
-        </Flex>
-        <Spacer />
-        <Flex py={3} textAlign="center" ml="5" direction="column">
-          <Link fontWeight="700">
-            <Flex wrap="wrap" direction="column">
-              <span style={styles.span}>login</span>
-              <span>ログイン</span>
-            </Flex>
-          </Link>
+
+          <Flex textAlign="center" ml="5" alignItems="center">
+            <Link fontWeight="700">
+              <Flex wrap="wrap" direction="column">
+                <span style={styles.span}>login</span>
+                <span>ログイン</span>
+              </Flex>
+            </Link>
+          </Flex>
         </Flex>
       </Flex>
-    </>
+    </Box>
   );
 };
 
