@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { Box, Flex, Text, Image } from '@chakra-ui/react';
+import { Box, Flex, Text, Image, Link } from '@chakra-ui/react';
 
 interface Props {
   title: string;
@@ -14,7 +14,7 @@ const TopCard: VFC<Props> = ({ title, children, subtitle, img }) => {
       <Flex flexWrap="wrap" justifyContent="space-between" mt="10%">
         <Flex direction="column" w="60%">
           <Box>
-            <Text fontSize="80px" fontWeight="bold" textDecoration="underline">
+            <Text fontSize="80px" fontWeight="bold">
               {title}
             </Text>
           </Box>
@@ -27,14 +27,18 @@ const TopCard: VFC<Props> = ({ title, children, subtitle, img }) => {
             </Box>
             {title === 'Quesiton' && (
               <Box mt="10%" ml="70%">
-                <Text fontSize="2xl" textDecoration="underline">
+                <Link
+                  fontSize="xl"
+                  textDecoration="underline"
+                  _hover={{ color: 'red.500', fontSize: '2xl' }}
+                >
                   View Question →
-                </Text>
+                </Link>
               </Box>
             )}
           </Box>
         </Flex>
-        <Image src={`/${img}`} alt="" display="block" w="40%" height="100%" mt="10%" />
+        <Image src={`/${img}`} alt="" display="block" w="40%" height="90%" mt="10%" />
       </Flex>
     </>
   );
