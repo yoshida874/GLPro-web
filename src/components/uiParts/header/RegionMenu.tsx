@@ -40,7 +40,7 @@ const RegionMenu: VFC = () => {
 
   return (
     <>
-      <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 0.8)" w="xl">
+      <MenuList border="0" mt="3" bg="rgba(198, 246, 213, 0.9)" w="xl">
         {splitRegion.map((regions, index) => (
           <div key={index}>
             <Flex>
