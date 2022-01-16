@@ -4,6 +4,7 @@ import { Box, Image, Flex, Text, Divider, Button, Spacer } from '@chakra-ui/reac
 import axios from 'axios';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
+import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, RadarChart, Radar } from 'recharts';
 
 import ReviewBox from 'src/components/areaDetail/ReviewBox';
 import CategoryRate from 'src/components/areaDetail/CategoryRate';
@@ -53,7 +54,8 @@ const Area: NextPage<Props> = ({ props }) => {
 
   // カテゴリーの平均値計算,status配列に結果を代入
   const statuses: number[] = [];
-  category.map((_, index) => {
+  const radarData: any[] = [];
+  category.map((element, index) => {
     const areaByCategory = props.areaDetails.filter((area) => {
       return area.category_id === category[index].id;
     });
@@ -64,6 +66,7 @@ const Area: NextPage<Props> = ({ props }) => {
 
     // 平均評価点は少数第1位で四捨五入
     const average = Math.round((total / areaByCategory.length) * 10) / 10;
+    radarData.push({ subject: element.category_name, status: average });
     statuses.push(average);
   });
 
@@ -79,6 +82,13 @@ const Area: NextPage<Props> = ({ props }) => {
         </Flex>
 
         <Divider mt="4" mb="4" />
+
+        <RadarChart outerRadius={90} width={730} height={250} data={radarData}>
+          <PolarGrid />
+          <PolarAngleAxis dataKey="subject" />
+          <PolarRadiusAxis angle={30} domain={[0, 5]} tickCount={6} />
+          <Radar name="Mike" dataKey="status" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+        </RadarChart>
 
         <Flex flexWrap="wrap" justifyContent="center" gridGap="3" alignItems="center">
           {category.map((singleCategory, index) => (
