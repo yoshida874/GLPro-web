@@ -38,7 +38,9 @@ const TopCard: VFC<Props> = ({ title, children, subtitle, img }) => {
             )}
           </Box>
         </Flex>
-        <Image src={`/${img}`} alt="" display="block" w="40%" height="90%" mt="10%" />
+        <Box mt="10%">
+          <Image src={`/${img}`} alt="" w="470px" height="350px" />
+        </Box>
       </Flex>
     </>
   );
