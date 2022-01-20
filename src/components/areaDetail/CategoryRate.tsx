@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import StarRatings from 'react-star-ratings';
 
 import { Category } from 'src/types/category';
@@ -10,7 +10,7 @@ interface Props {
 
 const CategoryRate: VFC<Props> = ({ category, status }) => {
   return (
-    <>
+    <Flex>
       <Box width="15%">
         <Text fontSize="20px">{category.category_name}</Text>
       </Box>
@@ -24,7 +24,7 @@ const CategoryRate: VFC<Props> = ({ category, status }) => {
       <Text ml="5" fontSize="20px" w="10" align="center">
         {status}
       </Text>
-    </>
+    </Flex>
   );
 };
 

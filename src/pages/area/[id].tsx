@@ -4,7 +4,14 @@ import { Box, Image, Flex, Text, Divider, Button, Spacer } from '@chakra-ui/reac
 import axios from 'axios';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
-import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, RadarChart, Radar } from 'recharts';
+import {
+  PolarAngleAxis,
+  PolarGrid,
+  PolarRadiusAxis,
+  RadarChart,
+  Radar,
+  ResponsiveContainer,
+} from 'recharts';
 
 import ReviewBox from 'src/components/areaDetail/ReviewBox';
 import CategoryRate from 'src/components/areaDetail/CategoryRate';
@@ -83,20 +90,29 @@ const Area: NextPage<Props> = ({ props }) => {
 
         <Divider mt="4" mb="4" />
 
-        <RadarChart outerRadius={90} width={730} height={250} data={radarData}>
-          <PolarGrid />
-          <PolarAngleAxis dataKey="subject" />
-          <PolarRadiusAxis angle={30} domain={[0, 5]} tickCount={6} />
-          <Radar name="Mike" dataKey="status" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-        </RadarChart>
-
-        <Flex flexWrap="wrap" justifyContent="center" gridGap="3" alignItems="center">
-          {category.map((singleCategory, index) => (
-            <Flex key={index} w="44%" justifyContent="center" alignItems="center">
-              <CategoryRate category={singleCategory} status={statuses[index]} />
-            </Flex>
-          ))}
-        </Flex>
+        <Box bg="white" borderBottom="medium solid #FAFAFA" w="90%" pl="4">
+          <Flex>
+            <RadarChart outerRadius={100} width={730} height={270} data={radarData}>
+              <PolarGrid />
+              <PolarAngleAxis dataKey="subject" />
+              <PolarRadiusAxis angle={30} domain={[0, 5]} tickCount={6} />
+              <Radar
+                name="Mike"
+                dataKey="status"
+                stroke="#8884d8"
+                fill="#8884d8"
+                fillOpacity={0.6}
+              />
+            </RadarChart>
+            <Box>
+              {category.map((singleCategory, index) => (
+                <Flex key={index} flexFlow="column">
+                  <CategoryRate category={singleCategory} status={statuses[index]} />
+                </Flex>
+              ))}
+            </Box>
+          </Flex>
+        </Box>
 
         <Box w="85%" ml="auto" mr="auto">
           <Box mt="16">
