@@ -24,7 +24,7 @@ const Question: NextPage = () => {
             <Text mr="5" w="20%">
               地区
             </Text>
-            <Select w="70%" mt="2" placeholder="選択してください">
+            <Select w="70%" placeholder="選択してください">
               <option value="option1">渋谷区</option>
               <option value="option2">港区</option>
               <option value="option3">大田区</option>
@@ -34,10 +34,10 @@ const Question: NextPage = () => {
             <Text mr="5" w="20%">
               分類
             </Text>
-            <Select w="70%" mt="2" placeholder="選択してください">
-              <option value="option1">渋谷区</option>
-              <option value="option2">港区</option>
-              <option value="option3">大田区</option>
+            <Select w="70%" placeholder="選択してください">
+              <option value="option1">治安</option>
+              <option value="option2">交通</option>
+              <option value="option3">子育て</option>
             </Select>
           </Flex>
         </Flex>
