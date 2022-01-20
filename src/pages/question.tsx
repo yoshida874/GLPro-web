@@ -12,7 +12,7 @@ const Question: NextPage = () => {
           <Text fontSize="3xl">あなたの疑問、不安を解決しよう！</Text>
           <Box mt="4">
             <Link href="questionpost">
-              <Button w="50" bg="#48BB78">
+              <Button w="50" bg="#48BB78" color="white">
                 質問を投稿する
               </Button>
             </Link>

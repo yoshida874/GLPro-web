@@ -11,7 +11,6 @@ import {
   Stack,
   Select,
   Input,
-  Link,
 } from '@chakra-ui/react';
 
 const Home: NextPage = () => {
@@ -52,13 +51,8 @@ const Home: NextPage = () => {
           <Text fontSize="2xl">質問内容</Text>
           <Textarea mt="2" h="200"></Textarea>
         </Flex>
-        <Flex justifyContent="space-between">
-          <Link href="/question">
-            <Button mt="4" bg="#48BB78">
-              戻る
-            </Button>
-          </Link>
-          <Button mt="4" bg="#48BB78">
+        <Flex justifyContent="right">
+          <Button mt="4" bg="#48BB78" color="white">
             投稿
           </Button>
         </Flex>
