@@ -46,11 +46,17 @@ const Question: NextPage = () => {
           <Flex w="60%" justifyContent="center" bg="white" direction="column">
             <Box borderBottom="medium solid #FAFAFA">
               <Flex justifyContent="space-between" alignItems="center">
-                <Text fontSize="2xl" ml="2" mt="2">
-                  治安ってどうですか？
-                </Text>
+                <Link href="questiondetail">
+                  <Text fontSize="2xl" ml="2" mt="2">
+                    治安ってどうですか？
+                  </Text>
+                </Link>
 
                 <Flex mr="2" mt="2">
+                  <Flex justifyContent="center" alignItems="center">
+                    <AiFillClockCircle />
+                    <Text>2022/10/10</Text>
+                  </Flex>
                   <Flex ml="2" alignItems="center">
                     <BiMap color="red" />
                     <Text>渋谷区</Text>
@@ -60,10 +66,6 @@ const Question: NextPage = () => {
                     <Text>治安</Text>
                   </Flex>
 
-                  <Flex ml="4" justifyContent="center" alignItems="center">
-                    <AiFillClockCircle />
-                    <Text>2022/10/10</Text>
-                  </Flex>
                   <Flex ml="4" mr="2" justifyContent="center" alignItems="center">
                     <AiFillMessage />
                     <Text>2</Text>
@@ -82,6 +84,10 @@ const Question: NextPage = () => {
                 </Text>
 
                 <Flex mr="2" mt="2">
+                  <Flex justifyContent="center" alignItems="center">
+                    <AiFillClockCircle />
+                    <Text>2022/10/10</Text>
+                  </Flex>
                   <Flex ml="2" alignItems="center">
                     <BiMap color="red" />
                     <Text>渋谷区</Text>
@@ -89,11 +95,6 @@ const Question: NextPage = () => {
                   <Flex ml="2" alignItems="center">
                     <AiFillTag color="blue" />
                     <Text>治安</Text>
-                  </Flex>
-
-                  <Flex ml="4" justifyContent="center" alignItems="center">
-                    <AiFillClockCircle />
-                    <Text>2022/10/10</Text>
                   </Flex>
                   <Flex ml="4" mr="2" justifyContent="center" alignItems="center">
                     <AiFillMessage />
