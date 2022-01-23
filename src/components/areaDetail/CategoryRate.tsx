@@ -1,6 +1,5 @@
 import { VFC } from 'react';
-import { Box, Flex, Text } from '@chakra-ui/react';
-import StarRatings from 'react-star-ratings';
+import { Flex, Text } from '@chakra-ui/react';
 
 import { Category } from 'src/types/category';
 interface Props {
@@ -11,18 +10,17 @@ interface Props {
 const CategoryRate: VFC<Props> = ({ category, status }) => {
   return (
     <Flex>
-      <Box width="15%">
-        <Text fontSize="20px">{category.category_name}</Text>
-      </Box>
-      <StarRatings
-        rating={status}
-        starRatedColor="#ffd500"
-        numberOfStars={5}
-        starDimension="35px"
-        starSpacing="4px"
-      />
-      <Text ml="5" fontSize="20px" w="10" align="center">
+      <Text fontSize="20px" w="16">
+        {category.category_name}
+      </Text>
+      <Text ml="4" fontSize="20px" w="16" align="end">
         {status}
+      </Text>
+      <Text fontSize="20px" ml="1">
+        点
+      </Text>
+      <Text fontSize="20px" ml="4" w="20">
+        (10位)
       </Text>
     </Flex>
   );

@@ -27,14 +27,14 @@ const ReviewBox: VFC<Props> = ({ review, categories }) => {
           starDimension="32px"
           starSpacing="4px"
         />
+        <Flex flexWrap="wrap" pr="12" alignItems="center">
+          <FaTag color="blue" />
+          {category[0].category_name}
+        </Flex>
         <Spacer />
         <Flex flexWrap="wrap" pr="4" alignItems="center">
           <BsStopwatch />
           {createdDay}
-        </Flex>
-        <Flex flexWrap="wrap" pr="12" alignItems="center">
-          <FaTag color="blue" />
-          {category[0].category_name}
         </Flex>
       </HStack>
       <Box mt="4">{review.review_content}</Box>
