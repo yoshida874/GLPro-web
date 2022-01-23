@@ -80,48 +80,55 @@ const Area: NextPage<Props> = ({ props }) => {
   return (
     <>
       <Box mr="40" ml="40" mt="8" mb="8">
-        <Flex height="200px" flexWrap="wrap" justifyContent="center" alignItems="center">
-          <Image src="/Emblem_Shibuya.png" alt="" w="auto" height="180px" objectFit="cover" />
-          <Box textAlign="center" ml="4">
-            <Text fontSize="52px">{props.name}</Text>
-            <Text fontSize="24px">Sibuya City</Text>
-          </Box>
-        </Flex>
-
-        <Divider mt="4" mb="4" />
-
-        <Box bg="white" borderBottom="medium solid #FAFAFA" w="90%" pl="4">
-          <Flex>
-            <RadarChart outerRadius={100} width={730} height={270} data={radarData}>
-              <PolarGrid />
-              <PolarAngleAxis dataKey="subject" />
-              <PolarRadiusAxis angle={30} domain={[0, 5]} tickCount={6} />
-              <Radar
-                name="Mike"
-                dataKey="status"
-                stroke="#8884d8"
-                fill="#8884d8"
-                fillOpacity={0.6}
-              />
-            </RadarChart>
-            <Box>
-              {category.map((singleCategory, index) => (
-                <Flex key={index} flexFlow="column">
-                  <CategoryRate category={singleCategory} status={statuses[index]} />
-                </Flex>
-              ))}
-            </Box>
+        <Box textAlign="center">
+          <Text fontSize="60px" fontWeight="700" as="u">
+            Review
+          </Text>
+          <Flex justifyContent="center" alignItems="baseline" mt="8">
+            <Text fontSize="50px" fontWeight="700" color="#48BB78">
+              {props.name}
+            </Text>
+            <Text fontSize="2xl" ml="4">
+              {props.areaDetails.length}件
+            </Text>
           </Flex>
         </Box>
 
-        <Box w="85%" ml="auto" mr="auto">
-          <Box mt="16">
-            <CategoryBtnGroup
-              categories={props.category}
-              selected={selectedCategory}
-              setSelected={setSelectedCategory}
-            />
-          </Box>
+        <Divider mb="4" />
+
+        {/* 評価項目 */}
+        <Box bg="white" maxW="1200px" ml="auto" mr="auto" borderBottom="medium solid #FAFAFA" pl="4">
+          <Flex>
+            <ResponsiveContainer width="50%" height={270}>
+              <RadarChart outerRadius={100} data={radarData}>
+                <PolarGrid />
+                <PolarAngleAxis dataKey="subject" />
+                <PolarRadiusAxis angle={30} domain={[0, 5]} tickCount={6} />
+                <Radar
+                  name="Mike"
+                  dataKey="status"
+                  stroke="#8884d8"
+                  fill="#8884d8"
+                  fillOpacity={0.6}
+                />
+              </RadarChart>
+            </ResponsiveContainer>
+            <Flex flexFlow="column" mt="auto" mb="auto">
+              {category.map((singleCategory, index) => (
+                <Box key={index} mb={2}>
+                  <CategoryRate category={singleCategory} status={statuses[index]} />
+                </Box>
+              ))}
+            </Flex>
+          </Flex>
+        </Box>
+
+        <Box maxW="1200px" mt="12" ml="auto" mr="auto">
+          <CategoryBtnGroup
+            categories={props.category}
+            selected={selectedCategory}
+            setSelected={setSelectedCategory}
+          />
 
           <Flex mt="12" alignItems="center">
             <Text fontSize="3xl">件数</Text>
