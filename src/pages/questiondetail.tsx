@@ -10,7 +10,7 @@ const Questiondetail: NextPage = () => {
       <Box mr="16" ml="16" mt="8" mb="8">
         <Flex mt="20" alignItems="center" justifyContent="center" direction="column">
           <Flex w="60%" justifyContent="center" bg="white" direction="column">
-            <Box borderBottom="medium solid #FAFAFA">
+            <Box borderBottom="medium solid #FAFAFA" p="1">
               <Flex justifyContent="space-between" alignItems="left" direction="column">
                 <Text fontSize="3xl" ml="2" mt="2">
                   治安ってどうですか？
@@ -47,8 +47,8 @@ const Questiondetail: NextPage = () => {
           </Flex>
 
           <Flex w="60%" justifyContent="center" bg="white" direction="column">
-            <Box borderBottom="medium solid #FAFAFA">
-              <Flex justifyContent="space-between" alignItems="left" flexDirection="column">
+            <Box borderBottom="medium solid #FAFAFA" p="1">
+              <Flex alignItems="left" flexDirection="column">
                 <Text fontSize="2xl" ml="2" mt="2">
                   answerタイトル
                 </Text>
@@ -63,7 +63,7 @@ const Questiondetail: NextPage = () => {
                 </Text>
               </Box>
             </Box>
-            <Box borderBottom="medium solid #FAFAFA">
+            <Box borderBottom="medium solid #FAFAFA" p="1">
               <Flex justifyContent="space-between" alignItems="left" flexDirection="column">
                 <Text fontSize="2xl" ml="2" mt="2">
                   answerタイトル

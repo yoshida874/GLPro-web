@@ -44,31 +44,29 @@ const Question: NextPage = () => {
 
         <Flex mt="20" alignItems="center" justifyContent="center">
           <Flex w="60%" justifyContent="center" bg="white" direction="column">
-            <Box borderBottom="medium solid #FAFAFA">
-              <Flex justifyContent="space-between" alignItems="center">
+            <Box borderBottom="medium solid #FAFAFA" p="1">
+              <Flex ml="2" alignItems="left" flexDirection="column">
                 <Link href="questiondetail">
-                  <Text fontSize="2xl" ml="2" mt="2">
+                  <Text fontSize="2xl" ml="" mt="2">
                     治安ってどうですか？
                   </Text>
                 </Link>
-
-                <Flex mr="2" mt="2">
-                  <Flex justifyContent="center" alignItems="center">
-                    <AiFillClockCircle />
-                    <Text>2022/10/10</Text>
-                  </Flex>
-                  <Flex ml="2" alignItems="center">
+                <Flex ml="3">
+                  <Flex alignItems="center">
                     <BiMap color="red" />
                     <Text>渋谷区</Text>
                   </Flex>
-                  <Flex ml="2" alignItems="center">
+                  <Flex ml="4" alignItems="center">
                     <AiFillTag color="blue" />
                     <Text>治安</Text>
                   </Flex>
-
-                  <Flex ml="4" mr="2" justifyContent="center" alignItems="center">
+                  <Flex ml="4" justifyContent="center" alignItems="center">
                     <AiFillMessage />
                     <Text>2</Text>
+                  </Flex>
+                  <Flex ml="4" justifyContent="center" alignItems="center">
+                    <AiFillClockCircle />
+                    <Text>2022/10/10</Text>
                   </Flex>
                 </Flex>
               </Flex>
@@ -76,34 +74,34 @@ const Question: NextPage = () => {
                 <Text>渋谷区の治安ってどうですか？</Text>
               </Box>
             </Box>
-
-            <Box borderBottom="medium solid #FAFAFA">
-              <Flex justifyContent="space-between" alignItems="center">
-                <Text fontSize="2xl" ml="2" mt="2">
-                  Question Title
-                </Text>
-
-                <Flex mr="2" mt="2">
-                  <Flex justifyContent="center" alignItems="center">
-                    <AiFillClockCircle />
-                    <Text>2022/10/10</Text>
-                  </Flex>
-                  <Flex ml="2" alignItems="center">
+            <Box borderBottom="medium solid #FAFAFA" p="1">
+              <Flex ml="2" alignItems="left" flexDirection="column">
+                <Link href="questiondetail">
+                  <Text fontSize="2xl" ml="" mt="2">
+                    治安ってどうですか？
+                  </Text>
+                </Link>
+                <Flex ml="3">
+                  <Flex alignItems="center">
                     <BiMap color="red" />
                     <Text>渋谷区</Text>
                   </Flex>
-                  <Flex ml="2" alignItems="center">
+                  <Flex ml="4" alignItems="center">
                     <AiFillTag color="blue" />
                     <Text>治安</Text>
                   </Flex>
-                  <Flex ml="4" mr="2" justifyContent="center" alignItems="center">
+                  <Flex ml="4" justifyContent="center" alignItems="center">
                     <AiFillMessage />
                     <Text>2</Text>
+                  </Flex>
+                  <Flex ml="4" justifyContent="center" alignItems="center">
+                    <AiFillClockCircle />
+                    <Text>2022/10/10</Text>
                   </Flex>
                 </Flex>
               </Flex>
               <Box mt="2" ml="2" mb="2">
-                <Text>contentあああああいうえいてあいうえんづえぎえ</Text>
+                <Text>渋谷区の治安ってどうですか？</Text>
               </Box>
             </Box>
           </Flex>
