@@ -97,10 +97,17 @@ const Area: NextPage<Props> = ({ props }) => {
         <Divider mb="4" />
 
         {/* 評価項目 */}
-        <Box bg="white" maxW="1200px" ml="auto" mr="auto" borderBottom="medium solid #FAFAFA" pl="4">
+        <Box
+          bg="white"
+          maxW="1200px"
+          ml="auto"
+          mr="auto"
+          borderBottom="medium solid #FAFAFA"
+          pl="4"
+        >
           <Flex>
-            <ResponsiveContainer width="50%" height={270}>
-              <RadarChart outerRadius={100} data={radarData}>
+            <ResponsiveContainer width="50%" height={330}>
+              <RadarChart outerRadius={130} data={radarData}>
                 <PolarGrid />
                 <PolarAngleAxis dataKey="subject" />
                 <PolarRadiusAxis angle={30} domain={[0, 5]} tickCount={6} />
@@ -113,9 +120,9 @@ const Area: NextPage<Props> = ({ props }) => {
                 />
               </RadarChart>
             </ResponsiveContainer>
-            <Flex flexFlow="column" mt="auto" mb="auto">
+            <Flex flexFlow="column" ml="12" mt="auto" mb="auto">
               {category.map((singleCategory, index) => (
-                <Box key={index} mb={2}>
+                <Box key={index} mb={3}>
                   <CategoryRate category={singleCategory} status={statuses[index]} />
                 </Box>
               ))}
@@ -123,7 +130,7 @@ const Area: NextPage<Props> = ({ props }) => {
           </Flex>
         </Box>
 
-        <Box maxW="1200px" mt="12" ml="auto" mr="auto">
+        <Box maxW="1000px" mt="12" ml="auto" mr="auto">
           <CategoryBtnGroup
             categories={props.category}
             selected={selectedCategory}
