@@ -1,8 +1,9 @@
 import { NextPage } from 'next';
 // import Image from 'next/image';
 import { Box, Flex, Text, Button } from '@chakra-ui/react';
-import { AiFillClockCircle, AiFillTag } from 'react-icons/ai';
-import { BiMap } from 'react-icons/bi';
+
+import AnswerBox from 'src/components/question/AnswerBox';
+import QuestionTitle from 'src/components/question/QuestionTitle';
 
 const Questiondetail: NextPage = () => {
   return (
@@ -10,31 +11,7 @@ const Questiondetail: NextPage = () => {
       <Box mr="16" ml="16" mt="8" mb="8">
         <Flex mt="20" alignItems="center" justifyContent="center" direction="column">
           <Flex w="60%" justifyContent="center" bg="white" direction="column">
-            <Box borderBottom="medium solid #FAFAFA" p="1">
-              <Flex justifyContent="space-between" alignItems="left" direction="column">
-                <Text fontSize="3xl" ml="2" mt="2">
-                  治安ってどうですか？
-                </Text>
-
-                <Flex mr="2">
-                  <Flex ml="2" alignItems="center">
-                    <BiMap color="red" />
-                    <Text>渋谷区</Text>
-                  </Flex>
-                  <Flex ml="2" alignItems="center">
-                    <AiFillTag color="blue" />
-                    <Text>治安</Text>
-                  </Flex>
-                  <Flex ml="4" justifyContent="center" alignItems="center">
-                    <AiFillClockCircle />
-                    <Text>2022/10/10</Text>
-                  </Flex>
-                </Flex>
-              </Flex>
-              <Box mt="4" ml="2" mb="2">
-                <Text>渋谷区の治安ってどうですか？</Text>
-              </Box>
-            </Box>
+            <QuestionTitle />
           </Flex>
 
           <Flex alignItems="center" justifyContent="space-between" w="60%">
@@ -47,38 +24,8 @@ const Questiondetail: NextPage = () => {
           </Flex>
 
           <Flex w="60%" justifyContent="center" bg="white" direction="column">
-            <Box borderBottom="medium solid #FAFAFA" p="1">
-              <Flex alignItems="left" flexDirection="column">
-                <Text fontSize="2xl" ml="2" mt="2">
-                  answerタイトル
-                </Text>
-                <Flex alignItems="center" ml="3">
-                  <AiFillClockCircle />
-                  <Text ml="1">2022/10/10</Text>
-                </Flex>
-              </Flex>
-              <Box mt="2" ml="2" mb="2">
-                <Text>
-                  よくはないかもああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                </Text>
-              </Box>
-            </Box>
-            <Box borderBottom="medium solid #FAFAFA" p="1">
-              <Flex justifyContent="space-between" alignItems="left" flexDirection="column">
-                <Text fontSize="2xl" ml="2" mt="2">
-                  answerタイトル
-                </Text>
-                <Flex alignItems="center" ml="3">
-                  <AiFillClockCircle />
-                  <Text ml="1">2022/10/10</Text>
-                </Flex>
-              </Flex>
-              <Box mt="2" ml="2" mb="2">
-                <Text>
-                  よくはないかもああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                </Text>
-              </Box>
-            </Box>
+            <AnswerBox />
+            <AnswerBox />
           </Flex>
         </Flex>
       </Box>

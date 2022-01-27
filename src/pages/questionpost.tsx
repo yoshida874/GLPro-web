@@ -9,22 +9,20 @@ import {
   RadioGroup,
   Radio,
   Stack,
-  Select,
   Input,
 } from '@chakra-ui/react';
+import SelectCategory from 'src/components/question/SelectCategory';
 
 const Home: NextPage = () => {
   return (
     <>
       <Box mr="20%" ml="20%" mt="8" mb="8">
         <Text fontSize="4xl">質問投稿</Text>
-        <Flex mt="4" w="30%" direction="column">
-          <Text fontSize="2xl">地区</Text>
-          <Select mt="2" placeholder="選択してください">
-            <option value="option1">渋谷区</option>
-            <option value="option2">港区</option>
-            <option value="option3">大田区</option>
-          </Select>
+        <Flex mt="4">
+          <Text mr="4" fontSize="2xl">
+            地区
+          </Text>
+          <SelectCategory />
         </Flex>
 
         <Flex mt="6" direction="column">
