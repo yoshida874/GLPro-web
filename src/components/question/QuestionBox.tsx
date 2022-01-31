@@ -3,38 +3,47 @@ import { Box, Flex, Text, Link } from '@chakra-ui/react';
 import { AiFillClockCircle, AiFillMessage, AiFillTag } from 'react-icons/ai';
 import { BiMap } from 'react-icons/bi';
 
-interface Props {}
+interface Props {
+  title: string;
+  region: string;
+  category: string;
+  date: string;
+  content: string;
+  comment: string;
+}
 
-const QuestionBox: VFC<Props> = () => {
+const QuestionBox: VFC<Props> = (props) => {
+  const { title, region, category, date, content, comment } = props;
+
   return (
     <Box borderBottom="medium solid #FAFAFA" p="1">
       <Flex ml="2" alignItems="left" flexDirection="column">
         <Link href="questiondetail">
           <Text fontSize="2xl" ml="" mt="2">
-            治安ってどうですか？
+            {title}
           </Text>
         </Link>
         <Flex ml="3">
           <Flex alignItems="center">
             <BiMap color="red" />
-            <Text>渋谷区</Text>
+            <Text>{region}</Text>
           </Flex>
           <Flex ml="4" alignItems="center">
             <AiFillTag color="blue" />
-            <Text>治安</Text>
+            <Text>{category}</Text>
           </Flex>
           <Flex ml="4" justifyContent="center" alignItems="center">
             <AiFillMessage />
-            <Text>2</Text>
+            <Text>{comment}</Text>
           </Flex>
           <Flex ml="4" justifyContent="center" alignItems="center">
             <AiFillClockCircle />
-            <Text>2022/10/10</Text>
+            <Text>{date}</Text>
           </Flex>
         </Flex>
       </Flex>
       <Box mt="2" ml="2" mb="2">
-        <Text>渋谷区の治安ってどうですか？</Text>
+        <Text>{content}</Text>
       </Box>
     </Box>
   );

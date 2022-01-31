@@ -4,6 +4,7 @@ import { Box, Flex, Text, Button, Link, HStack } from '@chakra-ui/react';
 
 import QuestionBox from '../components/question/QuestionBox';
 import SelectCategory from 'src/components/question/SelectCategory';
+import SelectRegion from 'src/components/question/SelectRegion';
 
 const Question: NextPage = () => {
   return (
@@ -21,14 +22,14 @@ const Question: NextPage = () => {
         </Flex>
 
         <Flex mt="10" alignItems="center" justifyContent="center" w="100%">
-          <HStack spacing="10">
-            <Flex alignItems="center" justifyContent="center" border="10px" w="70%">
+          <HStack spacing="10" w="40%">
+            <Flex alignItems="center" justifyContent="center" border="10px" w="50%">
               <Text fontSize="2xl" mr="5">
                 地区
               </Text>
-              <SelectCategory />
+              <SelectRegion />
             </Flex>
-            <Flex alignItems="center" justifyContent="center" border="10px" w="70%">
+            <Flex alignItems="center" justifyContent="center" border="10px" w="50%">
               <Text fontSize="2xl" mr="5">
                 分類
               </Text>
@@ -41,8 +42,22 @@ const Question: NextPage = () => {
           <Flex w="60%" justifyContent="center" bg="white" direction="column">
             <Box borderBottom="medium solid #FAFAFA" p="1">
               <Flex ml="2" alignItems="left" flexDirection="column">
-                <QuestionBox />
-                <QuestionBox />
+                <QuestionBox
+                  title="治安ってどうですか？"
+                  region="渋谷区"
+                  category="治安"
+                  date="2022/1/28"
+                  content="夜の渋谷の治安が知りたいです"
+                  comment="2"
+                />
+                <QuestionBox
+                  title="家賃って高いですか？"
+                  region="大田区"
+                  category="物価"
+                  date="2022/1/29"
+                  content="今度引っ越すんですけど家賃は高いですか？"
+                  comment="0"
+                />
               </Flex>
             </Box>
           </Flex>

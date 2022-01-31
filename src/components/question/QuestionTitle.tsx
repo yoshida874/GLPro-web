@@ -3,32 +3,39 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { BiMap } from 'react-icons/bi';
 import { AiFillClockCircle, AiFillTag } from 'react-icons/ai';
 
-interface Props {}
+interface Props {
+  title: string;
+  region: string;
+  category: string;
+  date: string;
+  content: string;
+}
 
-const QuestionBox: VFC<Props> = () => {
+const QuestionBox: VFC<Props> = (props) => {
+  const { title, region, category, date, content } = props;
   return (
     <Box borderBottom="medium solid #FAFAFA" p="1">
       <Flex ml="2" alignItems="left" flexDirection="column">
         <Text fontSize="4xl" ml="" mt="2">
-          治安ってどうですか？
+          {title}
         </Text>
         <Flex ml="3">
           <Flex alignItems="center">
             <BiMap color="red" />
-            <Text>渋谷区</Text>
+            {region}
           </Flex>
           <Flex ml="4" alignItems="center">
             <AiFillTag color="blue" />
-            <Text>治安</Text>
+            {category}
           </Flex>
 
           <Flex ml="4" justifyContent="center" alignItems="center">
             <AiFillClockCircle />
-            <Text>2022/10/10</Text>
+            {date}
           </Flex>
         </Flex>
         <Box mt="2" ml="2" mb="2">
-          <Text>渋谷区の治安ってどうですか？</Text>
+          {content}
         </Box>
       </Flex>
     </Box>
