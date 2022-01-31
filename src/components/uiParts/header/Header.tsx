@@ -43,7 +43,7 @@ const Header: VFC = () => {
           </Menu>
 
           <Flex textAlign="center" ml="5" alignItems="center">
-            <Link fontWeight="700">
+            <Link fontWeight="700" href="/question">
               <Flex wrap="wrap" direction="column">
                 <span style={styles.span}>question</span>
                 <span>質問一覧</span>
