@@ -1,8 +1,7 @@
 import { NextPage } from 'next';
 import { useState, useEffect } from 'react';
-import { Box, Image, Flex, Text, Divider, Button, Spacer } from '@chakra-ui/react';
+import { Box, Flex, Text, Divider, Button, Spacer } from '@chakra-ui/react';
 import axios from 'axios';
-import useSWR from 'swr';
 import { useRouter } from 'next/router';
 import {
   PolarAngleAxis,
@@ -27,11 +26,6 @@ interface Props {
   };
 }
 
-const fetcher = async () => {
-  const res = await axios.get('http://localhost:8080/category');
-  return res.data;
-};
-
 const Area: NextPage<Props> = ({ props }) => {
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState(999);
@@ -45,11 +39,6 @@ const Area: NextPage<Props> = ({ props }) => {
     setDisplayingReview(reviews);
   }, [props.areaDetails, selectedCategory]);
 
-  // カテゴリーの種類DBから取得
-  const { data } = useSWR('http://localhost:8080/category', fetcher);
-  if (!data) return <div></div>;
-  const category: Category[] = data;
-
   // レビュー投稿画面へ遷移する際に使用するareaidの取得、クエリパラメータの設定
   const id = router.query.id;
   const movePostEvent = () => {
@@ -62,9 +51,9 @@ const Area: NextPage<Props> = ({ props }) => {
   // カテゴリーの平均値計算,status配列に結果を代入
   const statuses: number[] = [];
   const radarData: any[] = [];
-  category.map((element, index) => {
+  props.category.map((element, index) => {
     const areaByCategory = props.areaDetails.filter((area) => {
-      return area.category_id === category[index].id;
+      return area.category_id === props.category[index].id;
     });
 
     const total = areaByCategory.reduce((sum, element) => {
@@ -87,9 +76,6 @@ const Area: NextPage<Props> = ({ props }) => {
           <Flex justifyContent="center" alignItems="baseline" mt="8">
             <Text fontSize="50px" fontWeight="700" color="#48BB78">
               {props.name}
-            </Text>
-            <Text fontSize="2xl" ml="4">
-              {props.areaDetails.length}件
             </Text>
           </Flex>
         </Box>
@@ -121,7 +107,7 @@ const Area: NextPage<Props> = ({ props }) => {
               </RadarChart>
             </ResponsiveContainer>
             <Flex flexFlow="column" ml="12" mt="auto" mb="auto">
-              {category.map((singleCategory, index) => (
+              {props.category.map((singleCategory, index) => (
                 <Box key={index} mb={3}>
                   <CategoryRate category={singleCategory} status={statuses[index]} />
                 </Box>
@@ -130,24 +116,22 @@ const Area: NextPage<Props> = ({ props }) => {
           </Flex>
         </Box>
 
-        <Box maxW="1000px" mt="12" ml="auto" mr="auto">
-          <CategoryBtnGroup
-            categories={props.category}
-            selected={selectedCategory}
-            setSelected={setSelectedCategory}
-          />
-
+        <Box maxW="1000px" mt="16" ml="auto" mr="auto">
           <Flex mt="12" alignItems="center">
-            <Text fontSize="3xl">件数</Text>
-            <Text fontSize="2xl" ml="4">
-              {displayingReview.length}件
-            </Text>
+            <CategoryBtnGroup
+              categories={props.category}
+              selected={selectedCategory}
+              setSelected={setSelectedCategory}
+            />
             <Spacer />
             <Button bg="#48BB78" color="white" onClick={() => movePostEvent()}>
               レビュー投稿
             </Button>
           </Flex>
-          <Box ml="auto" mr="auto" mt="1">
+          <Box ml="auto" mr="auto" mt="4">
+            <Flex ml="4">
+              <Text fontSize="24">{displayingReview.length}件</Text>
+            </Flex>
             {displayingReview.map((review, index) => (
               <Box key={index}>
                 <ReviewBox review={review} categories={props.category} />

@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { Box, Flex, HStack, Spacer } from '@chakra-ui/react';
+import { Box, Flex, HStack } from '@chakra-ui/react';
 import StarRatings from 'react-star-ratings';
 import dayjs from 'dayjs';
 import { FaTag } from 'react-icons/fa';
@@ -27,17 +27,18 @@ const ReviewBox: VFC<Props> = ({ review, categories }) => {
           starDimension="32px"
           starSpacing="4px"
         />
-        <Flex flexWrap="wrap" pr="12" alignItems="center">
+      </HStack>
+      <Flex>
+        <Flex flexWrap="wrap" alignItems="center">
           <FaTag color="blue" />
           {category[0].category_name}
         </Flex>
-        <Spacer />
-        <Flex flexWrap="wrap" pr="4" alignItems="center">
+        <Flex flexWrap="wrap" ml="2" alignItems="center">
           <BsStopwatch />
           {createdDay}
         </Flex>
-      </HStack>
-      <Box mt="4">{review.review_content}</Box>
+      </Flex>
+      <Box mt="3">{review.review_content}</Box>
     </Box>
   );
 };
