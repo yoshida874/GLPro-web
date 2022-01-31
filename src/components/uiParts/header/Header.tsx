@@ -17,7 +17,7 @@ const Header: VFC = () => {
   return (
     <Box bg="#48BB78" h="74px" w="100%">
       <Flex
-        maxW="1600px"
+        maxW="1400px"
         m={[0, 'auto']}
         px={20}
         pt={1.5}

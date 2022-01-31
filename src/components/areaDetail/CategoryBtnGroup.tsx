@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { Text, Button, Flex, Box, ButtonGroup } from '@chakra-ui/react';
+import { Button, Flex, ButtonGroup } from '@chakra-ui/react';
 
 import { Category } from 'src/types/category';
 
@@ -16,9 +16,6 @@ const CategoryBtnGroup: VFC<Props> = ({ categories, selected, setSelected }) => 
 
   return (
     <Flex>
-      <Box pr="4">
-        <Text fontSize="3xl">分類</Text>
-      </Box>
       <ButtonGroup display="flex" flexWrap="wrap" gridGap="4" size="md" variant="outline">
         <Button
           ml="8px"

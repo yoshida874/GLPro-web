@@ -1,9 +1,16 @@
 import { NextPage } from 'next';
 import { useState, useEffect } from 'react';
-import { Box, Image, Flex, Text, Divider, Button, Spacer } from '@chakra-ui/react';
+import { Box, Flex, Text, Divider, Button, Spacer } from '@chakra-ui/react';
 import axios from 'axios';
-import useSWR from 'swr';
 import { useRouter } from 'next/router';
+import {
+  PolarAngleAxis,
+  PolarGrid,
+  PolarRadiusAxis,
+  RadarChart,
+  Radar,
+  ResponsiveContainer,
+} from 'recharts';
 
 import ReviewBox from 'src/components/areaDetail/ReviewBox';
 import CategoryRate from 'src/components/areaDetail/CategoryRate';
@@ -19,11 +26,6 @@ interface Props {
   };
 }
 
-const fetcher = async () => {
-  const res = await axios.get('http://localhost:8080/category');
-  return res.data;
-};
-
 const Area: NextPage<Props> = ({ props }) => {
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState(999);
@@ -37,11 +39,6 @@ const Area: NextPage<Props> = ({ props }) => {
     setDisplayingReview(reviews);
   }, [props.areaDetails, selectedCategory]);
 
-  // カテゴリーの種類DBから取得
-  const { data } = useSWR('http://localhost:8080/category', fetcher);
-  if (!data) return <div></div>;
-  const category: Category[] = data;
-
   // レビュー投稿画面へ遷移する際に使用するareaidの取得、クエリパラメータの設定
   const id = router.query.id;
   const movePostEvent = () => {
@@ -53,9 +50,10 @@ const Area: NextPage<Props> = ({ props }) => {
 
   // カテゴリーの平均値計算,status配列に結果を代入
   const statuses: number[] = [];
-  category.map((_, index) => {
+  const radarData: any[] = [];
+  props.category.map((element, index) => {
     const areaByCategory = props.areaDetails.filter((area) => {
-      return area.category_id === category[index].id;
+      return area.category_id === props.category[index].id;
     });
 
     const total = areaByCategory.reduce((sum, element) => {
@@ -64,50 +62,76 @@ const Area: NextPage<Props> = ({ props }) => {
 
     // 平均評価点は少数第1位で四捨五入
     const average = Math.round((total / areaByCategory.length) * 10) / 10;
+    radarData.push({ subject: element.category_name, status: average });
     statuses.push(average);
   });
 
   return (
     <>
       <Box mr="40" ml="40" mt="8" mb="8">
-        <Flex height="200px" flexWrap="wrap" justifyContent="center" alignItems="center">
-          <Image src="/Emblem_Shibuya.png" alt="" w="auto" height="180px" objectFit="cover" />
-          <Box textAlign="center" ml="4">
-            <Text fontSize="52px">{props.name}</Text>
-            <Text fontSize="24px">Sibuya City</Text>
-          </Box>
-        </Flex>
+        <Box textAlign="center">
+          <Text fontSize="60px" fontWeight="700" as="u">
+            Review
+          </Text>
+          <Flex justifyContent="center" alignItems="baseline" mt="8">
+            <Text fontSize="50px" fontWeight="700" color="#48BB78">
+              {props.name}
+            </Text>
+          </Flex>
+        </Box>
 
-        <Divider mt="4" mb="4" />
+        <Divider mb="4" />
 
-        <Flex flexWrap="wrap" justifyContent="center" gridGap="3" alignItems="center">
-          {category.map((singleCategory, index) => (
-            <Flex key={index} w="44%" justifyContent="center" alignItems="center">
-              <CategoryRate category={singleCategory} status={statuses[index]} />
+        {/* 評価項目 */}
+        <Box
+          bg="white"
+          maxW="1200px"
+          ml="auto"
+          mr="auto"
+          borderBottom="medium solid #FAFAFA"
+          pl="4"
+        >
+          <Flex>
+            <ResponsiveContainer width="50%" height={330}>
+              <RadarChart outerRadius={130} data={radarData}>
+                <PolarGrid />
+                <PolarAngleAxis dataKey="subject" />
+                <PolarRadiusAxis angle={30} domain={[0, 5]} tickCount={6} />
+                <Radar
+                  name="Mike"
+                  dataKey="status"
+                  stroke="#8884d8"
+                  fill="#8884d8"
+                  fillOpacity={0.6}
+                />
+              </RadarChart>
+            </ResponsiveContainer>
+            <Flex flexFlow="column" ml="12" mt="auto" mb="auto">
+              {props.category.map((singleCategory, index) => (
+                <Box key={index} mb={3}>
+                  <CategoryRate category={singleCategory} status={statuses[index]} />
+                </Box>
+              ))}
             </Flex>
-          ))}
-        </Flex>
+          </Flex>
+        </Box>
 
-        <Box w="85%" ml="auto" mr="auto">
-          <Box mt="16">
+        <Box maxW="1000px" mt="16" ml="auto" mr="auto">
+          <Flex mt="12" alignItems="center">
             <CategoryBtnGroup
               categories={props.category}
               selected={selectedCategory}
               setSelected={setSelectedCategory}
             />
-          </Box>
-
-          <Flex mt="12" alignItems="center">
-            <Text fontSize="3xl">件数</Text>
-            <Text fontSize="2xl" ml="4">
-              {displayingReview.length}件
-            </Text>
             <Spacer />
             <Button bg="#48BB78" color="white" onClick={() => movePostEvent()}>
               レビュー投稿
             </Button>
           </Flex>
-          <Box ml="auto" mr="auto" mt="1">
+          <Box ml="auto" mr="auto" mt="4">
+            <Flex ml="4">
+              <Text fontSize="24">{displayingReview.length}件</Text>
+            </Flex>
             {displayingReview.map((review, index) => (
               <Box key={index}>
                 <ReviewBox review={review} categories={props.category} />
