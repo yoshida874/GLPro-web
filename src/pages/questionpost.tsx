@@ -18,7 +18,7 @@ const Home: NextPage = () => {
     <>
       <Box mr="20%" ml="20%" mt="8" mb="8">
         <Text fontSize="4xl">質問投稿</Text>
-        <Flex mt="4">
+        <Flex mt="4" w="30%">
           <Text mr="4" fontSize="2xl">
             地区
           </Text>

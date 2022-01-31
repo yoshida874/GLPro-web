@@ -24,13 +24,13 @@ const Question: NextPage = () => {
           <HStack spacing="10">
             <Flex alignItems="center" justifyContent="center" border="10px" w="70%">
               <Text fontSize="2xl" mr="5">
-                分類
+                地区
               </Text>
               <SelectCategory />
             </Flex>
             <Flex alignItems="center" justifyContent="center" border="10px" w="70%">
               <Text fontSize="2xl" mr="5">
-                地区
+                分類
               </Text>
               <SelectCategory />
             </Flex>
