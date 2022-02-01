@@ -12,7 +12,7 @@ const TopCard: VFC<Props> = ({ title, children, subtitle, img }) => {
   return (
     <>
       <Flex flexWrap="wrap" justifyContent="space-between" mt="10%">
-        <Flex direction="column" w="60%">
+        <Flex direction="column" w="50%">
           <Box>
             <Text fontSize="80px" fontWeight="bold">
               {title}
@@ -31,6 +31,7 @@ const TopCard: VFC<Props> = ({ title, children, subtitle, img }) => {
                   fontSize="xl"
                   textDecoration="underline"
                   _hover={{ color: 'red.500', fontSize: '2xl' }}
+                  href="/question"
                 >
                   View Question →
                 </Link>
@@ -39,7 +40,7 @@ const TopCard: VFC<Props> = ({ title, children, subtitle, img }) => {
           </Box>
         </Flex>
         <Box mt="10%">
-          <Image src={`/${img}`} alt="" w="470px" height="350px" />
+          <Image src={`/${img}`} alt="" w="600px" height="380px" />
         </Box>
       </Flex>
     </>
