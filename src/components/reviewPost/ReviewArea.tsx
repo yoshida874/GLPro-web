@@ -1,6 +1,6 @@
 import { VFC, useState, ChangeEvent } from 'react';
 import { Box, Flex, Text, Textarea } from '@chakra-ui/react';
-import { Rating } from 'react-simple-star-rating';
+import StarRatings from 'react-star-ratings';
 import { Category } from 'src/types/category';
 
 interface Props {
@@ -49,10 +49,17 @@ const ReviewArea: VFC<Props> = ({ category, result, setResult }) => {
         </Box>
 
         <Flex className="App" alignItems="center" pt="2">
-          <Rating onClick={handleRating} ratingValue={rating} fillColor="#ffd500" size={45} />
+          <StarRatings
+            changeRating={handleRating}
+            rating={rating}
+            starRatedColor="#ffd500"
+            starHoverColor="grey"
+            numberOfStars={5}
+            starDimension="45px"
+            starSpacing="4px"
+          />
         </Flex>
       </Flex>
-
       <Flex>
         <Textarea
           id="content"

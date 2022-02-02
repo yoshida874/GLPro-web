@@ -58,13 +58,12 @@ const ReviewPost: NextPage = () => {
     });
 
     const body = { Reviews: reviews };
-
     // Post
     try {
       const res = await axios.post('http://localhost:8080/review/create', body, {
         headers: { 'content-type': 'application/json' },
       });
-      console.log('成功: ' + res.data.text);
+      router.push(`./area/${router.query.id}`);
     } catch (e) {
       console.log('エラー' + e);
     }
@@ -73,34 +72,34 @@ const ReviewPost: NextPage = () => {
   return (
     <>
       <Box mr="40" ml="40" mt="8" mb="8">
-        <form onSubmit={submitEvent}>
-          <Flex height="80px" flexWrap="wrap" alignItems="left">
-            <Box textAlign="center" ml="4">
-              <Text fontSize="52px" fontWeight="bold">
-                渋谷区
-              </Text>
+        <Box textAlign="center">
+          <Flex justifyContent="center" alignItems="baseline" mt="8">
+            <Text fontSize="56px" fontWeight="bold" color="#48BB78">
+              渋谷区
+            </Text>
+          </Flex>
+        </Box>
+
+        <Box>
+          {categories.map((category, index) => (
+            <Box w="90%" ml="auto" mr="auto" mt="10" key={index}>
+              <ReviewArea category={category} result={result} setResult={setResult} />
             </Box>
-          </Flex>
-          <Box>
-            {categories.map((category, index) => (
-              <Box w="90%" ml="auto" mr="auto" mt="10" key={index}>
-                <ReviewArea category={category} result={result} setResult={setResult} />
-              </Box>
-            ))}
-          </Box>
-          <Flex w="90%" ml="auto" mr="auto" mt="10" justifyContent="flex-end">
-            <Button
-              type="submit"
-              bg="#48BB78"
-              color="#ffffff"
-              colorScheme="green"
-              size="md"
-              width="10%"
-            >
-              投 稿
-            </Button>
-          </Flex>
-        </form>
+          ))}
+        </Box>
+        <Flex w="90%" ml="auto" mr="auto" mt="10" justifyContent="flex-end">
+          <Button
+            type="submit"
+            bg="#48BB78"
+            color="#ffffff"
+            colorScheme="green"
+            size="md"
+            width="10%"
+            onClick={submitEvent}
+          >
+            投 稿
+          </Button>
+        </Flex>
       </Box>
     </>
   );
