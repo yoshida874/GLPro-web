@@ -7,7 +7,7 @@ import Footer from '../components/uiParts/Footer';
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ChakraProvider>
-      <Box background="#FAFAFA">
+      <Box background="#FAFAFA" minHeight="100vh" position="relative" paddingBottom="100px">
         <Head>
           <title>GLPro</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
